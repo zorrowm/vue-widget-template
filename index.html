@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html id="htmlRoot">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <!-- 使用字体图标IconFont时需打开 -->
+    <!-- <link rel="stylesheet" href="/iconfont/iconfont.css" /> -->
+    <title></title>
+    <script src="./SysConfig.js"></script>
+    <!-- 用于同步窗体信息 -->
+    <script src="./WSynchro.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="app-loading">
+        <div class="app-loading-wrap">
+          <img src="/img/logo.png" class="app-loading-logo" alt="Logo" />
+          <div class="app-loading-dots">
+            <span class="dot dot-spin">
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+            </span>
+          </div>
+          <div class="app-loading-title">
+            <script>
+              document.writeln(document.title);
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
