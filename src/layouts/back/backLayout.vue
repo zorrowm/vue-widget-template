@@ -5,8 +5,8 @@
 
 <script lang="ts">
 import widgetCofig from '@/settings/widgetSetting/index';
-import { defineComponent, onMounted, ref, watch } from "vue";
-import { Global, H5Tool, LayoutContainer } from 'xframelib';
+import { defineComponent, onMounted, ref, watch,computed } from "vue";
+import { Global, H5Tool, LayoutContainer, LayoutManager } from 'xframelib';
 import { appStore } from '@/store';
 import { storeToRefs } from 'pinia';
 export default defineComponent({
@@ -24,6 +24,8 @@ export default defineComponent({
         console.log(evt, 'loadedHandler');
         //服务Cesium大屏的
         Global.BackLayoutManager = evt.layoutManager;
+        //判断加载
+        loadInitWidgets(Global.BackLayoutManager);
       }
     }
 
@@ -37,13 +39,21 @@ export default defineComponent({
       const sideWidth = leftCollapsed.value ? appState.menuSetting?.minWidth : appState.menuSetting?.menuWidth;
       H5Tool.setCssVar('--leftSideWidth', sideWidth+'px');
     }
+    function loadInitWidgets(layoutManager:LayoutManager)
+    {
+      const isShowFooter=appState.showFooter;
+      if(isShowFooter)
+      {
+        //加载底部栏版权组件
+        layoutManager.loadWidget('FooterCopyrightWidget')
+      }
+    }
     onMounted(() => {
       //是否显示头部栏
       const isShowHeader=appState.headerSetting.show;
       const topheight=isShowHeader? appState.headerSetting.height:0;
       H5Tool.setCssVar('--header-top-height', topheight+'px');
       computeLeftMenuWidth();
-
     });
 
 
@@ -79,7 +89,10 @@ export default defineComponent({
   height: var(--header-top-height);
   pointer-events: visiblePainted;
 }
-
+:deep(.bottomContainer)
+{
+  pointer-events: visiblePainted;
+}
 .rightContainer {
   overflow: hidden;
 }

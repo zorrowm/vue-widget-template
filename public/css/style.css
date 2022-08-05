@@ -19,11 +19,19 @@ html {
     /* 选中菜单字颜色，默认为 #1890ff; */
     --sider-menu-selected-fontcolor:#1890ff;
 
-    --primary-color: #ccc; 
-    --text-color: #000;
-    --container-bg-color: rgb(240, 242, 245);
+    /* 底部状态栏颜色 */
+    --footer-bg-color:#eee;
+    --footer-copyright-fontcolor:#000;
+    --footer-info-fontcolor:#00f;
+    --footer-fontsize:8px;
+
     /* Icon图标样式 */
     --iconify-default-color:#333;
+
+    /* 整体字的颜色 */
+    --primary-color: #ccc; 
+    --text-color: #000;
+
   }
   /* 引入字体文件 */
   @font-face {
@@ -39,7 +47,7 @@ html {
     /* 图片文字的基线对齐，必须要有 */
     vertical-align: middle;
   }
-  
+  /* ******************以下为服务各业务系统的，可以补充添加与修改***************************/
   /**  Form表格相关样式 **/
   .ant-form-item
   {

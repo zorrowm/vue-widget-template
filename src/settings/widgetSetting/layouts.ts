@@ -28,7 +28,7 @@ const defaultWidgetCofig: Array<IWidgetConfig> = [
     label: '底部栏',
     container: LayoutContainerEnum.bottom,
     component: () => import('@/widgets/layouts/FooterCopyrightWidget.vue'),
-    preload: true
+    preload: false //需要根据配置判断是否加载
   },
   {
     layoutID: 'backLayout', //归属组

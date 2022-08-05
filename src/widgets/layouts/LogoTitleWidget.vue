@@ -1,5 +1,5 @@
 <template>
-  <div class="logo">
+  <div class="logo" v-if="getShowLogo">
     <img src="/img/logo.png" alt="" />
     <h2 v-show="!leftCollapsed" v-if="!iscenterTitle" class="title">{{ siteTitle }}</h2>
   </div>
@@ -10,6 +10,7 @@
 import FullScreen from '@/components/FullScreen.vue';
 import { appStore } from '@/store';
 import { Icon } from '@iconify/vue';
+import { computed } from '@vue/reactivity';
 import { storeToRefs } from 'pinia';
 import { defineComponent, ref } from 'vue';
 import { Global } from "xframelib";
@@ -22,12 +23,14 @@ export default defineComponent({
     const siteTitle = ref(Global.Config.UI?.SiteTitle);
     const appState=appStore();
     const {leftCollapsed}=storeToRefs(appState);
+    const getShowLogo=computed(()=>appState.showLogo)
     //居中显示标题
     const iscenterTitle=ref(appState.headerSetting.centerTitle);
    return {
       leftCollapsed,
       siteTitle,
-      iscenterTitle
+      iscenterTitle,
+      getShowLogo
     };
   },
 });

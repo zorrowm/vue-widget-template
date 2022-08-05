@@ -5,8 +5,6 @@ import { setupRouter } from './router/index';
 import { init } from 'xframelib';
 import 'xframelib/dist/index.css';
 import { message } from 'ant-design-vue';
-import 'ant-design-vue/es/message/style/index.css';
-import 'ant-design-vue/es/modal/style/index.css';
 //dev阶段打开，build注销
 import 'ant-design-vue/dist/antd.css';
 import { getSystemPKG, getSystemID } from '@/utils/sysTool';

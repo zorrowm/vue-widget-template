@@ -4,25 +4,23 @@ export type LocaleType = "zh_CN" | "en" | "ru" | "ja" | "ko";
  * 左侧菜单
  */
 export interface MenuSetting {
-  bgColor: string;
-  fixed: boolean;
+  // fixed: boolean;
   collapsed: boolean;
-  canDrag: boolean;
-  show: boolean;
-  hidden: boolean;
-  split: boolean;
+  // canDrag: boolean;
+  // show: boolean;
+  // hidden: boolean;
+  // split: boolean;
   minWidth: number; //最小宽度
   menuWidth: number;
+  accordion: boolean;
   mode: MenuModeEnum;
   type: MenuTypeEnum;
   // theme: ThemeEnum;
-  topMenuAlign: "start" | "center" | "end";
-  trigger: TriggerEnum;
-  accordion: boolean;
-  closeMixSidebarOnChange: boolean;
-  collapsedShowTitle: boolean;
-  mixSideTrigger: MixSidebarTriggerEnum;
-  mixSideFixed: boolean;
+  // topMenuAlign: "start" | "center" | "end";
+  // trigger: TriggerEnum;
+  // closeMixSidebarOnChange: boolean;
+  // mixSideTrigger: MixSidebarTriggerEnum;
+  // mixSideFixed: boolean;
 }
 
 // export interface MultiTabsSetting {
@@ -67,18 +65,10 @@ export interface ProjectConfig {
   //#region  未启用配置字段（备用）
   // 是否显示SettingButton
   showSettingButton: boolean;
-  // Whether to show the theme switch button
-  showDarkModeToggle: boolean;
-  // Whether to turn on the color weak mode
-  colorWeak: boolean;
-  // Theme color
-  themeColor: string;
   // pageLayout whether to enable keep-alive
   openKeepAlive: boolean;
   // Use error-handler-plugin
   useErrorHandle: boolean;
-  // Whether to open back to top
-  useOpenBackTop: boolean;
   //#endregion
 
   // Whether to display the logo
