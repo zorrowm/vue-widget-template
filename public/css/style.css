@@ -23,7 +23,8 @@ html {
     --footer-bg-color:#eee;
     --footer-copyright-fontcolor:#000;
     --footer-info-fontcolor:#00f;
-    --footer-fontsize:8px;
+    /* 浏览器默认支持的最小字体大小 */
+    --footer-fontsize:12px;
 
     /* Icon图标样式 */
     --iconify-default-color:#333;
