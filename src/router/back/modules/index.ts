@@ -1,4 +1,4 @@
-
+import { RouteRecordRaw } from 'vue-router';
 const menuCofig: Array<RouteRecordRaw> = [];
 let tmpMenuArray: Array<RouteRecordRaw> = [];
 
@@ -9,11 +9,17 @@ Object.keys(components).forEach(path => {
 tmpMenuArray = tmpMenuArray.sort((a, b) => {
   let indexA: number = 0;
   let indexB: number = 0;
-  if (a.meta && a.meta.index != undefined) {
+  if (a.meta) {
+    if(a.meta.index != undefined)
     indexA = Number(a.meta.index);
+    else
+    indexA =100;
   }
-  if (b.meta && b.meta.index != undefined) {
+  if (b.meta) {
+    if(b.meta.index != undefined)
     indexB = Number(b.meta.index);
+    else
+    indexB =100;
   }
   return indexA - indexB;
 });
