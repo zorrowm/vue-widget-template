@@ -72,10 +72,11 @@ export default defineComponent({
 :deep(.mainContainer) {
   top: var(--header-top-height);
   left: var(--leftSideWidth);
-  background-color: #0f0;
+  background-color: var(--main-bg-color);
   // height:100%;
   width: unset;
   right: 0px;
+    pointer-events: auto;
 }
 
 :deep(.leftContainer) {
@@ -84,20 +85,8 @@ export default defineComponent({
   bottom: 0px;
   pointer-events: unset;
 }
-
 :deep(.topContainer) {
   height: var(--header-top-height);
-  pointer-events: visiblePainted;
-}
-:deep(.bottomContainer)
-{
-  pointer-events: visiblePainted;
-}
-.rightContainer {
-  overflow: hidden;
-}
-
-.centerdiv {
-  overflow: hidden;
+  pointer-events: auto;
 }
 </style>

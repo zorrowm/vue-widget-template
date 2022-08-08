@@ -1,24 +1,21 @@
 <template>
-  <config-provider >
-    <SuspenseWithError>
+  <ConfigProvider :locale="zh_CN">
       <router-view v-slot="{ Component }">
         <component :is="Component" />
       </router-view>
-    </SuspenseWithError>
-  </config-provider>
+  </ConfigProvider>
 </template>
 
 <script lang="ts">
   import { ConfigProvider } from 'ant-design-vue';
   import { Global,onLockListener, unLockListener } from 'xframelib';
-  import SuspenseWithError from '@/components/SuspenseWithError.vue';
   import { addAPIProvider } from '@iconify/vue';
   import {defineComponent,onMounted,onUnmounted } from 'vue';
+  import zh_CN from "ant-design-vue/lib/locale/zh_CN";
   export default defineComponent({
     name: 'App',
     components: {
-      ConfigProvider,
-      SuspenseWithError
+      ConfigProvider
     },
     setup() {
       //TODO:检查必要参数是否配置
@@ -35,6 +32,7 @@
         unLockListener();
       });
       return {
+        zh_CN
       };
     }
   });
