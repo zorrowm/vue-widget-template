@@ -36,6 +36,12 @@ html {
   --primary-color: #ccc;
   --text-color: #000;
 }
+/* ant-design弹框样式,必须大于10000 */
+.ant-modal-mask,
+.ant-modal-wrap {
+  z-index: 10001 !important;
+}
+
 /* 引入字体文件 */
 @font-face {
   font-family: "PangMenZhengDao";
