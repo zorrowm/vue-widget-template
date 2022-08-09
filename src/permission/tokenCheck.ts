@@ -12,9 +12,9 @@ export default async function doTokenCheck(tokenValue: string) {
   if (resultdata) {
     const userState = userStore();
     //初始化
-    userState.init(resultdata);
+    userState.init(resultdata.data);
       //存储Token对象
-      setLocalToken(resultdata.doubleToken);
+      setLocalToken(resultdata.data.doubletoken);
       return true;
   }
   return false;
