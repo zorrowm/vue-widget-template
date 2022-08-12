@@ -7,6 +7,7 @@ import { isNavigationFailure } from 'vue-router';
 import { checkDoRefreshToken, clearRight, getCurrentSystemRight, getLocalToken, getSystemRoleRight } from 'xframelib';
 import { systemRoutes } from './index';
 import doTokenCheck from '../permission/tokenCheck';
+import { RouteRecordRaw } from 'vue-router';
 
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
@@ -29,7 +30,28 @@ function getPageTitle(pageTitle) {
 function isSystemRoute(routeName: string): boolean {
   //allowList.includes(toName)
   if (routeName === 'NotFound') return false;
-  return !!systemRoutes.find(item => item.name === routeName);
+  return filterSysRoute(systemRoutes,routeName);
+}
+
+
+function filterSysRoute(routes:RouteRecordRaw[],routeName: string):boolean
+{
+    let exist=false;
+     const len=routes.length;
+     for(let i=0;i<len;i++)
+     {
+       const tmpRoute=routes[i];
+       exist=(tmpRoute.name==routeName) ;
+       if(exist)
+        break;
+        else if(tmpRoute.children)
+        {
+          exist=filterSysRoute(tmpRoute.children,routeName);
+          if(exist)
+          break;
+        }
+     }
+     return exist;
 }
 
 export function createRouterGuards(router: Router) {
