@@ -5,8 +5,11 @@
     </div>
     <div class="fr" style="position:relative;height:100%">
       <div class="right-options">
+     <span> 
       <Icon v-if="showCollapseIcon" :icon="leftCollapsed ? 'ant-design:menu-unfold-outlined' : 'ant-design:menu-fold-outlined'" @click="toggleCollapse" />
+     </span>
       <FullScreen :target="fullScreenElem" v-if="showFullScreen" />
+      
       <a-popover>
         <template #content v-if="isNOLogin">
           <ul>
@@ -72,8 +75,6 @@ export default defineComponent({
     const doLogout = () => {
       Modal.confirm({
         title: '您确定要退出登录吗？',
-        okText:'确定',
-        cancelText:'取消',
         onOk: () => {
           //console.log(router, '退出登录');
           //退出登录
@@ -140,13 +141,11 @@ export default defineComponent({
 
   .right-options {
     display: flex;
-    // margin: 0px auto;
     align-items: center;
-    vertical-align:middle;
     justify-content:space-between;
-    min-width: 180px;
+    width: 200px;
     height:var(--header-top-height);
-    line-height: var(--header-top-height);
+    // line-height: var(--header-top-height);
 
   }
 </style>
