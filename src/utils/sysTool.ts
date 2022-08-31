@@ -26,10 +26,14 @@ export function getSystemPKG() {
  */
 export function getRouteURL(childPath: string, path: string = '/') {
   if (!childPath) return undefined;
+  console.log(childPath,'childPath***************')
   if (childPath.startsWith('/')) {
     if (childPath.startsWith(path)) return childPath;
     else return `${path}${childPath}`;
   } else {
+    if(path==='/')
+    return `${path}${childPath}`;
+    else
     return `${path}/${childPath}`;
   }
 }

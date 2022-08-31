@@ -28,8 +28,8 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     // cesium()
   ];
 
-  //unplugin-vue-components
-  isBuild && vitePlugins.push(configViteUnplugin());
+  //unplugin-vue-components isBuild &&
+   vitePlugins.push(configViteUnplugin());
   //unplugin-auto-import
   // vitePlugins.push(pluginAutoImport);
 
