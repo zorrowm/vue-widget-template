@@ -136,6 +136,7 @@ export default defineComponent({
     width:100%;
     line-height: var(--header-top-height);
     text-align: center;
+    color: var(--header-title-color);
     // background-color: #f00;
   }
 

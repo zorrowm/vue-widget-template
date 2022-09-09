@@ -126,7 +126,7 @@ export default defineComponent({
           checkAddDefaultRoute(router,first)
         }
         else{
-          //  Global.Message?.warn('用户登录失败！') 
+          Global.Message?.warn(formState.username+'无系统权限，无法登录！') 
           return;
         }
 
