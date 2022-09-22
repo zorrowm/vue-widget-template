@@ -96,6 +96,7 @@ export default defineComponent({
             extraData:{
                 title: '修改密码', 
             },
+            width:200,
             rowData
         };
       doLoadModal(modalData);
