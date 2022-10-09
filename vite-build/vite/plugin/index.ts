@@ -9,11 +9,11 @@ import { configVisualizerConfig } from './visualizer';
 // import { configThemePlugin } from './theme';
 import { configHmrPlugin } from './hmr';
 import { configViteUnplugin } from './unplugin';
-import cesium from 'vite-plugin-cesium';
+// import cesium from 'vite-plugin-cesium';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const {
-    VITE_USE_IMAGEMIN,
+    // VITE_USE_IMAGEMIN,
     VITE_LEGACY,
     VITE_BUILD_COMPRESS,
     VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE

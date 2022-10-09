@@ -8,6 +8,7 @@ import { checkDoRefreshToken, clearRight, getCurrentSystemRight, getLocalToken, 
 import { systemRoutes } from './index';
 import doTokenCheck from '../permission/tokenCheck';
 import { RouteRecordRaw } from 'vue-router';
+import Logger from '@/utils/Logger';
 
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
@@ -149,7 +150,8 @@ export function createRouterGuards(router: Router) {
                   next();
                 });
             } else {
-              console.log('验证tk参数失败！');
+              Logger().trace('验证tk参数失败！');
+              // console.log('验证tk参数失败！');
               //跳转到主网站登录页面
               const rebackURL = Global.Config.ServiceURL.UILoginURL;
               if (rebackURL) {

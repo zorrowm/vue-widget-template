@@ -12,7 +12,8 @@ const SysConfig = {
     IsInternet: true,
     LockTime: 3600, //1小时
     IsNoLogin: false, //无需登录页面,true时不登录
-    GrayMode: false //是否启用网站暗灰模式，悼念日，默认为false
+    GrayMode: false, //是否启用网站暗灰模式，悼念日，默认为false
+    ProductLog:false//是否在产品发布后启用日志记录
   },
   //#endregion
 

@@ -3,6 +3,8 @@ import type { App, Plugin } from 'vue';
 
 import { unref } from 'vue';
 import { isObject } from 'xframelib';
+import Logger from './Logger';
+export {Logger};
 
 export const noop = () => {};
 

@@ -1,3 +1,4 @@
+import  Logger  from '@/utils/Logger';
 import { createApp } from 'vue';
 import App from './App.vue';
 //模板添加的
@@ -10,6 +11,10 @@ import 'ant-design-vue/dist/antd.css';
 import { getSystemPKG, getSystemID } from '@/utils/sysTool';
 import { createPinia } from 'pinia';
 
+if(window.global===undefined)
+{
+  window.global=globalThis;
+}
 message.config({
   top: `100px`,
   duration: 1,
@@ -21,6 +26,7 @@ const sysID = getSystemID();
 //分组名，工程名
 const sysGroup = getSystemPKG().name;
 init(message, sysID, sysGroup);
+
 // 创建pinia 实例
 const pinia = createPinia();
 const app = createApp(App);
@@ -31,6 +37,8 @@ if (import.meta.env.DEV) {
   import('ant-design-vue/dist/antd.js').then(it => {
     app.use(it.default);
   });
+  Logger('主页').warn('这是测试日志…………',app);
+  Logger('主页').warn('222……');
 }
 
 setupRouter(app);
