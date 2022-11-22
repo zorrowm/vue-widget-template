@@ -7,7 +7,7 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       index: 2,
       title: '地图',
-      icon: 'ant-design:home-outlined'
+      icon: 'ant-design:aim-outlined'
     },
     component: () => import('@/views/back/mapview/index.vue') //
   }
