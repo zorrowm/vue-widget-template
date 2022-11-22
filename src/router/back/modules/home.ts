@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
       title: '首页',
       icon: 'ant-design:home-outlined' //'ant-design:home-outlined'
     },
-    component: () => import('@/layouts/main/index.vue') //@/views/back/home/index.vue
+    component: () => import('@/views/back/home/index.vue') //
   }
 ];
 
