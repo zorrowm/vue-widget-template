@@ -10,9 +10,8 @@
 import FullScreen from '@/components/FullScreen.vue';
 import { appStore } from '@/store';
 import { Icon } from '@iconify/vue';
-import { computed } from '@vue/reactivity';
 import { storeToRefs } from 'pinia';
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref,computed } from 'vue';
 import { Global } from "xframelib";
 export default defineComponent({
   name: "LogoTitleWidget",

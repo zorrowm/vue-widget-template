@@ -11,6 +11,7 @@ import { configHmrPlugin } from './hmr';
 import { configViteUnplugin } from './unplugin';
 // import cesium from 'vite-plugin-cesium';
 
+
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const {
     // VITE_USE_IMAGEMIN,
@@ -23,13 +24,13 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     // have to
     vue(),
     // have to
-    vueJsx()
+    vueJsx(),
     //三维
     // cesium()
   ];
 
   //unplugin-vue-components isBuild &&
-   vitePlugins.push(configViteUnplugin());
+   vitePlugins.push(configViteUnplugin(isBuild));
   //unplugin-auto-import
   // vitePlugins.push(pluginAutoImport);
 
@@ -46,19 +47,14 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
       })
     );
 
-  // vite-plugin-style-import
-  vitePlugins.push(configStyleImportPlugin(isBuild));
-
-  // rollup-plugin-visualizer
-  vitePlugins.push(configVisualizerConfig());
-
-  //vite-plugin-theme
-  // vitePlugins.push(configThemePlugin(isBuild));
-
   // The following plugins only work in the production environment
   if (isBuild) {
-    //vite-plugin-imagemin
-    //VITE_USE_IMAGEMIN && vitePlugins.push(configImageminPlugin());
+    // rollup-plugin-visualizer
+    vitePlugins.push(configVisualizerConfig());
+
+    // vite-plugin-style-import
+    vitePlugins.push(configStyleImportPlugin());
+
     // rollup-plugin-gzip
     vitePlugins.push(
       configCompressPlugin(VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE)

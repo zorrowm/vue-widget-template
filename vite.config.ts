@@ -85,7 +85,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
               const expansions = [
                 'axios',
                 'xframelib',
-                'ant-design-vue',
+                // 'ant-design-vue',
                 'mapbox-gl',
                 'ol',
                 'echarts',
@@ -93,8 +93,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
                 // '@hprose',
                 'xgis-ol',
                 'vue-router',
-                // '@iconify/vue',
-                '@vue'
+                '@iconify/vue',
               ]; //, 'svelte-jsoneditor', 'mapbox-gl'
               const c = expansions.find(exp => id.includes(`/node_modules/${exp}`));
               if (c) {
@@ -120,8 +119,11 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
     optimizeDeps: {
       include: [
-        // 'ant-design-vue/es/locale/zh_CN'
-        // 'ant-design-vue/es/locale/en_US'
+        'ant-design-vue/es',
+        // 'ant-design-vue/es/locale/zh_CN',
+        // 'ant-design-vue/es/layout/style', 
+        // 'ant-design-vue/es/modal/style', 
+        // 'ant-design-vue/es/menu/style'
       ],
       exclude: ['vue-demi']
     },

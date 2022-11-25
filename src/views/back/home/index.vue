@@ -86,7 +86,7 @@ import TableEvent from '@/events/modules/TableEvent';
 import { testStore, userStore,appStore } from '@/store';
 import { getDefaultMenus, getMoreMenus } from './models/ActionMenus';
 import { columns } from './models/TabColumns';
-import {Icon} from '@Iconify/vue';
+import {Icon} from '@iconify/vue';
 import {storeToRefs} from 'pinia'
 import {Global} from 'xframelib'
 export default defineComponent({

@@ -4,10 +4,7 @@
  */
  import { createStyleImportPlugin } from 'vite-plugin-style-import';
 
- export function configStyleImportPlugin(_isBuild: boolean) {
-   // if (!isBuild) {
-   //   return [];
-   // }
+ export function configStyleImportPlugin() {
    const styleImportPlugin = createStyleImportPlugin({
      libs: [
        {

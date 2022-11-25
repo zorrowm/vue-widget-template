@@ -5,11 +5,11 @@ import App from './App.vue';
 import { setupRouter } from './router/index';
 import { init } from 'xframelib';
 import 'xframelib/dist/index.css';
+import { getSystemPKG, getSystemID } from '@/utils/sysTool';
+import { createPinia } from 'pinia';
 import { message } from 'ant-design-vue';
 //dev阶段打开，build注销
 import 'ant-design-vue/dist/antd.css';
-import { getSystemPKG, getSystemID } from '@/utils/sysTool';
-import { createPinia } from 'pinia';
 
 if(window.global===undefined)
 {
@@ -32,14 +32,10 @@ const pinia = createPinia();
 const app = createApp(App);
 // 挂载到 Vue 根实例上
 app.use(pinia);
-//注册全局常用的ant-design-vue组件
-if (import.meta.env.DEV) {
-  import('ant-design-vue/dist/antd.js').then(it => {
-    app.use(it.default);
-  });
-  Logger('主页').warn('这是测试日志…………',app);
-  Logger('主页').warn('222……');
-}
+
+  //测试
+Logger('主页').warn('这是测试日志…………',app);
+Logger('主页').warn('222……');
 
 setupRouter(app);
 app.mount('#app');
