@@ -6,7 +6,7 @@
     @ok="handleOk"
     @cancel="handleCancel"
   >
-    <component v-bind:is="content" :extra="extra" :data="data"></component>
+    <component v-bind:is="content" :extra="extra" :data="dataRef"></component>
   </a-modal>
 </template>
 <script lang="ts">
@@ -14,7 +14,7 @@
   import { IExtraProperty } from '@/models/IModalModels';
   import { object,number,bool,oneOfType } from "vue-types";
   import {defineComponent,ref,watch,computed } from 'vue'
-  import { Global, isBoolean } from 'xframelib';
+  import { Global } from 'xframelib';
   
   export default defineComponent({
     name: 'ModalContainer',
@@ -29,12 +29,21 @@
     setup(props) {
       //const widthRef = computed(() => props.width);
       const visibleRef = ref<boolean>(props.visible);
+      const dataRef=ref(props.data);
+
       watch(
         () => props.visible,
         (newVal, oldVal) => {
-          if (newVal) visibleRef.value = newVal;
+           visibleRef.value = newVal;
         }
       );
+      //解决：不可见时仍旧传值
+      watch(()=>props.data,()=>{
+        if(visibleRef.value)
+        {
+          dataRef.value=props.data;
+        }
+      })
       //标题
       const titleRef = computed(() => {
         if (props.extra?.title) return props.extra?.title;
@@ -49,18 +58,7 @@
         {
           if(formChild.validateForm)
           {
-            const validateFun=formChild.validateForm();
-            if(isBoolean(validateFun))
-            {
-              if(validateFun)
-              {
-                visibleRef.value = false;
-              }
-              else
-              Global.Message?.err('表单校验失败！')      
-            }
-            else if(validateFun)
-            validateFun.then(res=>{
+            formChild.validateForm().then(res=>{
               //校验成功
               visibleRef.value = false;
               EmitMsg(formChild.name, true);
@@ -82,7 +80,7 @@
       };
 
       return {
-        //widthRef,
+        dataRef,
         visibleRef,
         handleOk,
         titleRef,
