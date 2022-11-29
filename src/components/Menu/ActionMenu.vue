@@ -13,7 +13,7 @@
         <a-menu>
           <a-menu-item v-for="(item, index) in appendMenus" :command="index" :key="index">
              <div style="width:110px">
-              <a-popconfirm title="确认删除？" @confirm="doClick(item.value)" v-if="item.isdelete">
+              <a-popconfirm title="确认删除？" @confirm="doClick(item.value)" v-if="item.isdelete||item.value==='delete'">
                 <Icon :icon="item.icon" class="operationIcon" />{{ item.name }}
               </a-popconfirm>
               <div v-else @click="doClick(item.value)">
