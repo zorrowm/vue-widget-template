@@ -35,6 +35,8 @@
         () => props.visible,
         (newVal, oldVal) => {
            visibleRef.value = newVal;
+           if(props.visible)//必须的
+           dataRef.value=props.data;
         }
       );
       //解决：不可见时仍旧传值
