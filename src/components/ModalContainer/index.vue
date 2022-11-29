@@ -14,6 +14,8 @@
   import { IExtraProperty } from '@/models/IModalModels';
   import { object,number,bool,oneOfType } from "vue-types";
   import {defineComponent,ref,watch,computed } from 'vue'
+  import { Global, isBoolean } from 'xframelib';
+  
   export default defineComponent({
     name: 'ModalContainer',
     props: {
@@ -47,7 +49,18 @@
         {
           if(formChild.validateForm)
           {
-            formChild.validateForm().then(res=>{
+            const validateFun=formChild.validateForm();
+            if(isBoolean(validateFun))
+            {
+              if(validateFun)
+              {
+                visibleRef.value = false;
+              }
+              else
+              Global.Message?.err('表单校验失败！')      
+            }
+            else if(validateFun)
+            validateFun.then(res=>{
               //校验成功
               visibleRef.value = false;
               EmitMsg(formChild.name, true);
