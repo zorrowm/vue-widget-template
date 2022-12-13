@@ -109,12 +109,18 @@ export default defineComponent({
         //是否是超级管理员
         const isSuperLevel=userState.DefaultMaxRoleLevel===0;
         //获取系统角色权限
+        let sysregister=true;
         const roleRight = await getSystemRoleRight(
           sysID,isSuperLevel
         ).catch(ex=>{
+          sysregister=false;
           Global.Message?.err('该系统未注册！')
         });
         canLoginClicked = true;
+        if(!sysregister)
+        {
+          return;
+        }
         if (roleRight) {
           const menus = getRightRoutes();
           let first:any;

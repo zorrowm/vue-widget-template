@@ -35,7 +35,6 @@ app.use(pinia);
 
   //测试
 Logger('主页').warn('这是测试日志…………',app);
-Logger('主页').warn('222……');
 
 setupRouter(app);
 app.mount('#app');
