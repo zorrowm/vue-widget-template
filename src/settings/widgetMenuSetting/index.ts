@@ -4,7 +4,8 @@ let tmpMenuArray: Array<IWidgetMenu> = [];
 
 const components = import.meta.glob('./*.ts',{eager:true});
 Object.keys(components).forEach(path => {
-  tmpMenuArray.push(...components[path].default);
+  const comp=components[path] as any;
+  tmpMenuArray.push(...comp.default);
 });
 tmpMenuArray = tmpMenuArray.sort((a, b) => {
   let indexA: number = 0;
