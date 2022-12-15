@@ -76,7 +76,6 @@ export default defineComponent({
       Modal.confirm({
         title: '您确定要退出登录吗？',
         onOk: () => {
-          //Global.Logger().debug(router, '退出登录');
           //退出登录
           userState.clear();
           Global.Message?.msg('成功退出登录');

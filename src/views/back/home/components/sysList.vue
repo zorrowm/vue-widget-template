@@ -74,7 +74,6 @@ export default defineComponent({
     });
     const initTable = async () => {
       let res = await GetSystemsListByRole(props.roleId);
-      //Global.Logger().debug(res, "角色下面的系统--");
       if (res.length > 0) {
         tableState.tableData = res;
         activeKey.value = tableState.tableData[0].Id + "1";
@@ -86,7 +85,6 @@ export default defineComponent({
     //获取所有功能
     const getFunc = async (id) => {
       let resu: any = await GetFuncsList(id);
-      //Global.Logger().debug(resu, "所有功能");
       if (resu) {
         resu.Widgets = resu.Widgets.map((item) => {
           item.Name = item.Label;
@@ -99,8 +97,6 @@ export default defineComponent({
     //获取该角色在系统下的权限
     const getRoleAuth = async (sysid) => {
       let res: any = await GetFuncByRoleId(props.roleId, sysid);
-      //Global.Logger().debug(res, "获取该角色在某系统下面的权限---");
-      //Global.Logger().debug(res.Menu, "res.Menu--");
       if (res.Menu) {
         for (let i = 0; i < res.Menu.length; i++) {
           res.Menu[i].Id = res.Menu[i].id;
@@ -151,7 +147,6 @@ export default defineComponent({
           // state.FunctionsAuth.push(res.Functions[i].Id);
         }
       }
-      //Global.Logger().debug(state.menuAuth, "state.menuAuth--");
     };
     //递归push id
     const getTreeChildrenId = (arr, Auth) => {
@@ -188,7 +183,6 @@ export default defineComponent({
     const treeSelected = () => {};
     //树勾选事件
     const treeCheckeds = (val) => {
-      //Global.Logger().debug(val, "树勾选事件--");
     };
     //展开行
     const expandedRowsChange = (expandedRows) => {
@@ -199,7 +193,6 @@ export default defineComponent({
     };
     //点击展开按钮触发的事件
     const expand = async (expanded, record) => {
-      //Global.Logger().debug(expanded, "expanded-");
       if (expanded) {
         spinning.value = true;
         setTimeout(() => {

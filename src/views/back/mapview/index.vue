@@ -38,7 +38,7 @@ export default defineComponent({
         let isFinished = ref<boolean>(false);
 
         const GetSelectIds = (val: string[]) => {
-            //Global.Logger().debug(val, '要删除的IDs');
+            Global.Logger().debug(val, '要删除的IDs');
         };
         const visibleBatchDelete = computed(() => {
             return SelectIds.length > 0;

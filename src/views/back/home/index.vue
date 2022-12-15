@@ -153,7 +153,7 @@ export default defineComponent({
       if (modalID) {
         recordData.value = rowData; //赋值数据
         loadModal(modalID).then(item => {
-          //Global.Logger().debug(modalID, item, "加载modal");
+          Global.Logger().debug(modalID, item, "加载modal");
           modalVisibleRef.value = true;
           modalContentRef.value = item;
         });
@@ -164,7 +164,6 @@ export default defineComponent({
 
     // 顶部功能
     const topBarClick = (val: string, searchValue: string) => {
-      //Global.Logger().debug(val, "val");
       switch (val) {
         case "searchWord":
           searchWord(searchValue);
@@ -235,7 +234,6 @@ export default defineComponent({
             tableState.tableData[i].isShow = true;
           }
         }
-        //Global.Logger().debug(tableState.tableData, "tableState.tableData--");
       } else {
         tableState.tableData = [];
         tableState.totalCount = 0;
@@ -243,7 +241,6 @@ export default defineComponent({
     };
     //筛选角色
     const RoleFilltr = async (val) => {
-      //Global.Logger().debug(val, "角色id--");
       if (val) {
         let res: any = await GetUsersListByRoleOrSystem(
           val,
@@ -251,7 +248,7 @@ export default defineComponent({
           tableState.PageIndex,
           tableState.PageSize
         );
-        //Global.Logger().debug(res, "角色筛选");
+         Global.Logger().debug(res, "角色筛选");
         if (res != undefined) {
           tableState.tableData = res.arrayList;
           tableState.totalCount = res.TotalCount;
@@ -262,7 +259,6 @@ export default defineComponent({
               tableState.tableData[i].isShow = true;
             }
           }
-          //Global.Logger().debug(tableState.tableData, "tableState.tableData--");
         } else {
           tableState.tableData = [];
           tableState.totalCount = 0;
@@ -273,7 +269,6 @@ export default defineComponent({
     };
     //筛选系统
     const SysFilltr = async (val) => {
-      //Global.Logger().debug(val, "系统id--");
       if (val) {
         let res: any = await GetUsersListByRoleOrSystem(
           "",
@@ -281,7 +276,7 @@ export default defineComponent({
           tableState.PageIndex,
           tableState.PageSize
         );
-        //Global.Logger().debug(res, "系统筛选");
+        Global.Logger().debug(res, "系统筛选");
         if (res != undefined) {
           tableState.tableData = res.arrayList;
           tableState.totalCount = res.TotalCount;
@@ -292,7 +287,6 @@ export default defineComponent({
               tableState.tableData[i].isShow = true;
             }
           }
-          //Global.Logger().debug(tableState.tableData, "tableState.tableData--");
         } else {
           tableState.tableData = [];
           tableState.totalCount = 0;

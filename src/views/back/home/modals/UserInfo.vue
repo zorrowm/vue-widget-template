@@ -318,17 +318,15 @@ export default defineComponent({
       formRef.value
         .validate()
         .then(() => {
-          //Global.Logger().debug("values", formState, toRaw(formState));
           saveUserInfo();
         })
         .catch((error) => {
-          //Global.Logger().debug("error", error);
+          Global.Logger().warn("error", error);
         });
     };
 
     //树控件回调
     const treeSelected = (val) => {
-      //Global.Logger().debug(val, "树控件回调");
       state.groupSeleceted = val;
     };
     //保存用户信息
@@ -368,7 +366,7 @@ export default defineComponent({
           appkey: formState.Appkey,
           userRoles: state.roleCreate,
         });
-        //Global.Logger().debug(result, "res保存用户信息");
+
         if (result) {
           Global.Message?.msg("新建用户成功");
           // emit("userInfoSubmit", true);
@@ -397,7 +395,7 @@ export default defineComponent({
     //获取组数据
     const getDepartmentList = async () => {
       const result: any = await GetDepartmentList("", 0, 0);
-      //Global.Logger().debug(result, "res树数据");
+      Global.Logger().debug(result, "res树数据");
       state.treeData.push({
         Name: "全部",
         Children: result.arrayList,
@@ -406,7 +404,6 @@ export default defineComponent({
     //获取角色数据
     const getRoleListAll = async () => {
       const result: any = await getRoleList("", 0, 0);
-      //Global.Logger().debug(result, "res获取角色数据");
       state.roleList = result.arrayList;
     };
     //初始化编辑数据

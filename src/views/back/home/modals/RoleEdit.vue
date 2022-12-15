@@ -113,7 +113,7 @@ export default defineComponent({
     //获取角色数据
     const getRoleListAll = async () => {
       const result: any = await getRoleList("", 0, 0);
-      //Global.Logger().debug(result, "res获取角色数据");
+      Global.Logger().debug(result, "res获取角色数据");
       state.roleList = result.arrayList;
     };
     const initData = () => {

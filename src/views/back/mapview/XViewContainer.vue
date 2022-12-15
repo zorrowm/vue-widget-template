@@ -632,9 +632,7 @@ plotHelper.addFeatures([ttt]);
         let SelectIds: string[] = [];
         let isFinished = ref<boolean>(false);
 
-        const GetSelectIds = (val: string[]) => {
-            //Global.Logger().debug(val, '要删除的IDs');
-        };
+
         const visibleBatchDelete = computed(() => {
             return SelectIds.length > 0;
         });
@@ -689,7 +687,6 @@ plotHelper.addFeatures([ttt]);
             measureVisible,
             doLocation,
             visibleBatchDelete,
-            GetSelectIds,
             isFinished,
             mapInitedHandler,
             layoutContentHeight, 
