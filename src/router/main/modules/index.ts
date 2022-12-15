@@ -2,7 +2,7 @@ import { RouteRecordRaw } from 'vue-router';
 const menuCofig: Array<RouteRecordRaw> = [];
 let tmpMenuArray: Array<RouteRecordRaw> = [];
 
-const components = import.meta.globEager('./*.ts');
+const components = import.meta.glob('./*.ts',{eager:true});
 Object.keys(components).forEach(path => {
   tmpMenuArray.push(...components[path].default);
 });
