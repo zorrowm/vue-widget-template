@@ -48,7 +48,7 @@ export default defineComponent({
     //   })
     // })
 
-    // console.log(performanceMonitor.getPerformanceData(), 'performanceMonitor')
+    // Global.Logger().debug(performanceMonitor.getPerformanceData(), 'performanceMonitor')
 
     return {
       browserInfo,

@@ -76,7 +76,7 @@ export default defineComponent({
         if (currentRoute.name == 'login' || props.collapsed) return;
         state.openKeys = getOpenKeys();
         state.selectedKeys = [currentRoute.name];
-        console.log(state.openKeys, 'openKeys');
+        Global.Logger().debug(state.openKeys, 'openKeys');
       }
     );
 

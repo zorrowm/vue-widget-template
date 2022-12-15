@@ -7,9 +7,7 @@ import { isNavigationFailure } from 'vue-router';
 import { checkDoRefreshToken, clearRight, getCurrentSystemRight, getLocalToken, getSystemRoleRight } from 'xframelib';
 import { systemRoutes } from './index';
 import doTokenCheck from '../permission/tokenCheck';
-import { RouteRecordRaw } from 'vue-router';
-import Logger from '@/utils/Logger';
-
+import { RouteRecordRaw,Router } from 'vue-router';
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
@@ -66,7 +64,7 @@ export function createRouterGuards(router: Router) {
       const systemRight = getCurrentSystemRight();
       //WM:解决刷新路径时，无法启动定时刷新任务的问题
       if (!Global.User&&userState.id) {
-        checkDoRefreshToken(tokenInfo);
+        checkDoRefreshToken();
         //刷新用户的角色权限
         if (toName === 'NotFound') {
           //判断是否加入过权限控制的路由
@@ -150,8 +148,7 @@ export function createRouterGuards(router: Router) {
                   next();
                 });
             } else {
-              Logger().trace('验证tk参数失败！');
-              // console.log('验证tk参数失败！');
+               Global.Logger().debug('验证tk参数失败！');
               //跳转到主网站登录页面
               const rebackURL = Global.Config.ServiceURL.UILoginURL;
               if (rebackURL) {
@@ -189,7 +186,7 @@ export function createRouterGuards(router: Router) {
     //设置网页Title
     document.title = getPageTitle(to.meta.title);
     if (isNavigationFailure(failure)) {
-      console.log('failed navigation', failure);
+      Global.Logger().debug('failed navigation', failure);
     }
     // 在这里设置需要缓存的组件名称
     const keepAliveComponents = asyncRouteStoreState.keepAliveComponents;
@@ -211,6 +208,6 @@ export function createRouterGuards(router: Router) {
   });
 
   router.onError(error => {
-    console.log(error, '路由错误');
+    Global.Logger().debug(error, '路由错误');
   });
 }

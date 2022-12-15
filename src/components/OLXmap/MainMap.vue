@@ -17,7 +17,7 @@ export default defineComponent({
 
     })
     onBeforeMount(() => {
-        console.log('2.组件挂载页面之前执行----onBeforeMount')
+        Global.Logger().debug('2.组件挂载页面之前执行----onBeforeMount')
     })
     onMounted(() => {
     })

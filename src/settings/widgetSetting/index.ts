@@ -6,7 +6,7 @@ const widgetCofig: Array<IWidgetConfig> = [];
 const components = import.meta.glob('./*.ts',{eager:true});
 Object.keys(components).forEach(path => {
   //const fileName = path.replace(/(.*\/)*([^.]+).*/gi, '$2');
-  //console.log(fileName, '....11111111');
+  //Global.Logger().debug(fileName, '....11111111');
   widgetCofig.push(...components[path].default);
 });
 

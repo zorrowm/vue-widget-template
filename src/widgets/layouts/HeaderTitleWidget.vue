@@ -76,7 +76,7 @@ export default defineComponent({
       Modal.confirm({
         title: '您确定要退出登录吗？',
         onOk: () => {
-          //console.log(router, '退出登录');
+          //Global.Logger().debug(router, '退出登录');
           //退出登录
           userState.clear();
           Global.Message?.msg('成功退出登录');
@@ -96,7 +96,7 @@ export default defineComponent({
             extraData:{
                 title: '修改密码', 
             },
-            width:200,
+            width:500,
             rowData
         };
       doLoadModal(modalData);

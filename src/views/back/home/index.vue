@@ -1,9 +1,5 @@
 <template>
   <div style="overflow:hidden;margin:0 5px">
-    <!-- <TopFunBar @topBarClick="topBarClick" :ifNew="true" :ifTask="false" :roleScreen="true" :sysScreen="true"
-      :ifsearchUser="true" :placeholder="'请输入用户名'" /> -->
-    <!-- <div style="font-size:30px;height:30px;width:300px;background-color:#f00;color:yellow">
-      {{ storeRefs.name?.value}} {{ storeRefs.age?.value }}</div> -->
     <div class="tableContent" :style="contentStyle">
       <a-table :columns="columns" :data-source="tableData" :pagination="false" rowKey="Id"
         :scroll="{ x: 1000, y: clientHeight - 220 }">
@@ -83,7 +79,7 @@ import Pagination from "@/components/Pagination/index.vue";
 import VSwitch from "@/components/VSwitch.vue";
 import { OffEventHandler, OnEventHandler } from '@/events';
 import TableEvent from '@/events/modules/TableEvent';
-import { testStore, userStore,appStore } from '@/store';
+import { userStore,appStore } from '@/store';
 import { getDefaultMenus, getMoreMenus } from './models/ActionMenus';
 import { columns } from './models/TabColumns';
 import {Icon} from '@iconify/vue';
@@ -157,7 +153,7 @@ export default defineComponent({
       if (modalID) {
         recordData.value = rowData; //赋值数据
         loadModal(modalID).then(item => {
-          //console.log(modalID, item, "加载modal");
+          //Global.Logger().debug(modalID, item, "加载modal");
           modalVisibleRef.value = true;
           modalContentRef.value = item;
         });
@@ -168,7 +164,7 @@ export default defineComponent({
 
     // 顶部功能
     const topBarClick = (val: string, searchValue: string) => {
-      //console.log(val, "val");
+      //Global.Logger().debug(val, "val");
       switch (val) {
         case "searchWord":
           searchWord(searchValue);
@@ -228,7 +224,7 @@ export default defineComponent({
         tableState.PageIndex,
         tableState.PageSize
       );
-      console.log(result, "用户列表--");
+      Global.Logger().debug(result, "用户列表--");
       if (result != undefined) {
         tableState.tableData = result.arrayList;
         tableState.totalCount = result.TotalCount;
@@ -239,7 +235,7 @@ export default defineComponent({
             tableState.tableData[i].isShow = true;
           }
         }
-        //console.log(tableState.tableData, "tableState.tableData--");
+        //Global.Logger().debug(tableState.tableData, "tableState.tableData--");
       } else {
         tableState.tableData = [];
         tableState.totalCount = 0;
@@ -247,7 +243,7 @@ export default defineComponent({
     };
     //筛选角色
     const RoleFilltr = async (val) => {
-      //console.log(val, "角色id--");
+      //Global.Logger().debug(val, "角色id--");
       if (val) {
         let res: any = await GetUsersListByRoleOrSystem(
           val,
@@ -255,7 +251,7 @@ export default defineComponent({
           tableState.PageIndex,
           tableState.PageSize
         );
-        //console.log(res, "角色筛选");
+        //Global.Logger().debug(res, "角色筛选");
         if (res != undefined) {
           tableState.tableData = res.arrayList;
           tableState.totalCount = res.TotalCount;
@@ -266,7 +262,7 @@ export default defineComponent({
               tableState.tableData[i].isShow = true;
             }
           }
-          //console.log(tableState.tableData, "tableState.tableData--");
+          //Global.Logger().debug(tableState.tableData, "tableState.tableData--");
         } else {
           tableState.tableData = [];
           tableState.totalCount = 0;
@@ -277,7 +273,7 @@ export default defineComponent({
     };
     //筛选系统
     const SysFilltr = async (val) => {
-      //console.log(val, "系统id--");
+      //Global.Logger().debug(val, "系统id--");
       if (val) {
         let res: any = await GetUsersListByRoleOrSystem(
           "",
@@ -285,7 +281,7 @@ export default defineComponent({
           tableState.PageIndex,
           tableState.PageSize
         );
-        //console.log(res, "系统筛选");
+        //Global.Logger().debug(res, "系统筛选");
         if (res != undefined) {
           tableState.tableData = res.arrayList;
           tableState.totalCount = res.TotalCount;
@@ -296,7 +292,7 @@ export default defineComponent({
               tableState.tableData[i].isShow = true;
             }
           }
-          //console.log(tableState.tableData, "tableState.tableData--");
+          //Global.Logger().debug(tableState.tableData, "tableState.tableData--");
         } else {
           tableState.tableData = [];
           tableState.totalCount = 0;
@@ -344,23 +340,10 @@ export default defineComponent({
     });
 
     const clientHeight=computed(() =>layoutContentHeight.value);
-    //测试 storeToRefs的双向绑定
-    const testState = testStore();
-    const storeRefs = storeToRefs(testState);
     onMounted(() => {
       OnEventHandler(TableEvent.RefeshTable, initTable);
 
       initTable();
-
-      //测试代码
-      // setTimeout(() => {
-      //   testState.init();
-      //   setTimeout(() => {
-      //     if (storeRefs.name)
-      //       storeRefs.name.value = '53789';
-      //     console.log(testState.name, '9999999999999')
-      //   }, 5000);
-      // }, 3000)
     });
     function getRightDefaultMenus(rowItem) {
       //TODO:根据传入Row进行过滤
@@ -397,8 +380,7 @@ export default defineComponent({
       modalContentRef,
       modalVisibleRef,
       extraRef,
-      clientHeight,
-      storeRefs
+      clientHeight
     };
   },
 });

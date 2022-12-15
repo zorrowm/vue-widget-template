@@ -26,7 +26,7 @@
         登录
       </div>
     </div>
-    <div class="login-copyright">{{copyRightInfo}}</div>
+    <div class="login-copyright">{{ copyRightInfo }}</div>
   </div>
 </template>
 
@@ -54,8 +54,10 @@ export default defineComponent({
     });
     const nameInput = ref<HTMLInputElement>();
     const pwdInput = ref<HTMLInputElement>();
-    const systemTitle = ref(Global.Config.UI?.SiteTitle);
-    const copyRightInfo=ref(Global.Config.UI?.CopyRight);
+    const systemTitle = ref<string>('');
+    systemTitle.value=Global.Config.UI?.SiteTitle;
+    const copyRightInfo=ref<string>('');
+    copyRightInfo.value=Global.Config.UI?.CopyRight;
     const router = useRouter();
     const route = useRoute();
     let toPath = decodeURIComponent((route.query?.redirect || '/') as string);
@@ -63,7 +65,7 @@ export default defineComponent({
     const localToken = getLocalToken();
     let tokenValue: string | undefined;
     if (localToken) {
-      checkDoRefreshToken(localToken); //刷新KEY
+      checkDoRefreshToken(); //刷新KEY
       if (router)
         router.replace(toPath).then(_ => {
           if (route.name == 'login') {
@@ -77,7 +79,7 @@ export default defineComponent({
     let canLoginClicked = true;
     const handleSubmit = async () => {
       if (!canLoginClicked) {
-        console.log('频繁点击登录******')
+        Global.Logger().debug('频繁点击登录******')
         return;
       }
       canLoginClicked = false;
@@ -138,7 +140,7 @@ export default defineComponent({
 
         const toPath = decodeURIComponent((route.query?.redirect || '/') as string);
         if (router) {
-          console.log(toPath, 'toPath');
+          Global.Logger().debug(toPath, 'toPath');
           if (toPath.startsWith('http://') || toPath.startsWith('https://')) {
             const localToken = getLocalToken();
             window.open(toPath + '#/?tk=' + localToken.token, '_self');

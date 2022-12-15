@@ -86,7 +86,7 @@
       //搜索
       const Search = async () => {
         let res = await GetUserInfoByName(state.searchValues);
-        //console.log(res, '精准查询--');
+        //Global.Logger().debug(res, '精准查询--');
         if (res) {
           tableState.tableData.push(res);
           state.searchValues = undefined;

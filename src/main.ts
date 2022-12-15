@@ -1,4 +1,3 @@
-import  Logger  from '@/utils/Logger';
 import { createApp } from 'vue';
 import App from './App.vue';
 //模板添加的
@@ -32,9 +31,6 @@ const pinia = createPinia();
 const app = createApp(App);
 // 挂载到 Vue 根实例上
 app.use(pinia);
-
-  //测试
-Logger('主页').warn('这是测试日志…………',app);
 
 setupRouter(app);
 app.mount('#app');

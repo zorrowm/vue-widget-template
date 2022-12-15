@@ -26,7 +26,7 @@ import {defineComponent,ref,reactive,watch,toRefs} from 'vue'
       isCard:bool()
     },
     setup(props, { emit }) {
-      //console.log(props.pagesize, "props");
+      //Global.Logger().debug(props.pagesize, "props");
       // let pageSize = ref<any>(1);
       // let current = ref<any>(10);
       let pageSizeOptions = ref<string[]>();
@@ -43,20 +43,20 @@ import {defineComponent,ref,reactive,watch,toRefs} from 'vue'
       });
       //跳转页面
       const onChange = (pageNumber: number) => {
-        //console.log("Page: ", pageNumber);
+        //Global.Logger().debug("Page: ", pageNumber);
         emit('pageChange', pageNumber);
       };
 
       const onShowSizeChange = (current: number, pageSize: number) => {
-        //console.log(current, pageSize, "pagina");
+        //Global.Logger().debug(current, pageSize, "pagina");
         emit('sizeChange', pageSize);
       };
       watch(props, () => {
-        //console.log(props, "props");
+        //Global.Logger().debug(props, "props");
         state.pageSize = props.pagesize;
         state.current = props.pageindex;
         state.totalCount = props.totalCount;
-        //console.log("state", state);
+        //Global.Logger().debug("state", state);
       });
       return {
         // pageSize,

@@ -107,8 +107,8 @@ export default defineComponent({
             setTimeout(() => {
             //     plotHelper.setAttributeField('test',121212);
             //     plotHelper.setAttributeField('WM123','897878');
-            //    console.log(plotHelper.getAttributeField('test'),'当前要素属性值') ;
-                // console.log('PlotDraw绘制结束geojson数据', plotHelper.plotUtils.getFeaturePlotJson(plotHelper.getCurrentFeature()));
+            //    Global.Logger().debug(plotHelper.getAttributeField('test'),'当前要素属性值') ;
+                // Global.Logger().debug('PlotDraw绘制结束geojson数据', plotHelper.plotUtils.getFeaturePlotJson(plotHelper.getCurrentFeature()));
                 // plotHelper.removeFeature();
                 const ttt={
     "type": "Feature",
@@ -540,7 +540,7 @@ export default defineComponent({
 }
 //  const ddd=new GeoJSON().readFeature(ttt);
 plotHelper.addFeatures([ttt]);
-//              console.log(plotHelper.getAllFeatures(),'所有要素数据')
+//              Global.Logger().debug(plotHelper.getAllFeatures(),'所有要素数据')
             }, 4000);
             // setTimeout(() => {
             //     plotHelper.removeAllFeatures();
@@ -633,7 +633,7 @@ plotHelper.addFeatures([ttt]);
         let isFinished = ref<boolean>(false);
 
         const GetSelectIds = (val: string[]) => {
-            //console.log(val, '要删除的IDs');
+            //Global.Logger().debug(val, '要删除的IDs');
         };
         const visibleBatchDelete = computed(() => {
             return SelectIds.length > 0;

@@ -81,7 +81,7 @@ export default defineComponent({
     };
     // 处理图片缩放比
     const handZoom = (type = "scale") => {
-      console.log(state.imgScale);
+      Global.Logger().debug(state.imgScale);
       state.imgStyle.width = state.initWidth * state.imgScale + "px";
       state.imgStyle.height = state.initHeight * state.imgScale + "px";
       if (type === "init") {
@@ -120,7 +120,7 @@ export default defineComponent({
         state.imgStyle.height = height;
         state.initWidth = parseFloat(width);
         state.initHeight = parseFloat(height);
-        console.log(state.imgStyle, "图片加载完毕");
+        Global.Logger().debug(state.imgStyle, "图片加载完毕");
       }
     };
 

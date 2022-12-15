@@ -109,7 +109,7 @@ const appStore = defineStore("app", {
     },
     resizeHandler()
     {
-      console.log('窗体大小改变了~~~~~');
+      Global.Logger().debug('窗体大小改变了~~~~~');
       this.layoutContentWidth=document.body.clientWidth-this.layoutSiderWidth;
       this.layoutContentHeight=document.body.clientHeight - this.layoutFooterHeight - this.layoutHeaderHeight;
       this.saveCacheStore();

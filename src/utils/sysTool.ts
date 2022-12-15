@@ -1,5 +1,5 @@
 import { Router,RouteRecordRaw } from 'vue-router';
-import { H5Tool } from 'xframelib';
+import { H5Tool,Global } from 'xframelib';
 
 /**
  * 获取当前系统的ID
@@ -26,7 +26,6 @@ export function getSystemPKG() {
  */
 export function getRouteURL(childPath: string, path: string = '/') {
   if (!childPath) return undefined;
-  console.log(childPath,'childPath***************')
   if (childPath.startsWith('/')) {
     if (childPath.startsWith(path)) return childPath;
     else return `${path}${childPath}`;

@@ -21,7 +21,7 @@ export default defineComponent({
     //获取服务此Layout的layoutManager
     function loadedHandler(evt: any) {
       if (evt.layoutID === layoutIDRef.value) {
-        console.log(evt, 'loadedHandler');
+        Global.Logger().debug(evt, 'loadedHandler');
         //服务Cesium大屏的
         Global.BackLayoutManager = evt.layoutManager;
         //判断加载

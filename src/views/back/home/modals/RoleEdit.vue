@@ -87,7 +87,7 @@ export default defineComponent({
           saveUserInfo();
         })
         .catch((error) => {
-          console.log("error", error);
+          Global.Logger().debug("error", error);
         });
     };
 
@@ -113,7 +113,7 @@ export default defineComponent({
     //获取角色数据
     const getRoleListAll = async () => {
       const result: any = await getRoleList("", 0, 0);
-      //console.log(result, "res获取角色数据");
+      //Global.Logger().debug(result, "res获取角色数据");
       state.roleList = result.arrayList;
     };
     const initData = () => {

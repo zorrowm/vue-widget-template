@@ -82,7 +82,7 @@ export default function useModal(props, { emit, attrs }: SetupContext) {
     maxRef.value.onclick = function () {
       const { left, top } = getComputedStyle(oDrag);
       const { width, height } = getComputedStyle(modalBody.value);
-      console.log({ width, height, left, top });
+      Global.Logger().debug({ width, height, left, top });
       // 最大化时，保存原来的位置大小
       modalWidth = width;
       modalHeight = height;
@@ -213,7 +213,7 @@ export default function useModal(props, { emit, attrs }: SetupContext) {
     window.removeEventListener('resize', debounced);
     document.documentElement.removeEventListener('click', getClickPosition, true);
     debounced.cancel;
-    console.log('弹窗销毁了');
+    Global.Logger().debug('弹窗销毁了');
   });
 
   return {

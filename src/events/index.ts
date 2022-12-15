@@ -7,7 +7,7 @@ import StatusEvent from './modules/StatusEvent';
  * @param eventHanlder 事件处理函数
  */
 export function OnEventHandler(sysEvent: string, eventHanlder: Handler) {
-  //console.log(sysEvent,eventHanlder,'OnEventHandler');
+  //Global.Logger().debug(sysEvent,eventHanlder,'OnEventHandler');
   Global.EventBus.on(sysEvent, eventHanlder);
 }
 /**
@@ -16,7 +16,7 @@ export function OnEventHandler(sysEvent: string, eventHanlder: Handler) {
  * @param eventHanlder 事件处理函数
  */
 export function OffEventHandler(sysEvent: string, eventHanlder: Handler) {
-  //console.log(sysEvent,eventHanlder,'OffEventHandler');
+  //Global.Logger().debug(sysEvent,eventHanlder,'OffEventHandler');
   Global.EventBus.off(sysEvent, eventHanlder);
 }
 /**
@@ -25,7 +25,7 @@ export function OffEventHandler(sysEvent: string, eventHanlder: Handler) {
  * @param data 数据信息
  */
 export function EmitMsg(sysEvent: string, data: any) {
-  //console.log(sysEvent,data,'EmitMsg');
+  //Global.Logger().debug(sysEvent,data,'EmitMsg');
   Global.EventBus.emit(sysEvent, data);
 }
 /**
