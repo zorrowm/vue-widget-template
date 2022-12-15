@@ -1,7 +1,7 @@
-import type { ProjectConfig, HeaderSetting, MenuSetting } from "#/config";
+import type { ProjectConfig,MenuSetting } from "#/config";
 import projectSetting from "@/settings/projectSetting";
 
-import { Storage, deepMerge,H5Tool } from "xframelib";
+import { Storage, deepMerge,H5Tool,Global } from "xframelib";
 import { defineStore, _DeepPartial } from "pinia";
 
 const PROJ_CONFIG_KEY = "PROJ_SETTINGS_KEY";
