@@ -1,6 +1,6 @@
 <template>
-  <div style="maring: 10px 0px">
-    <a-pagination
+  <div>
+    <a-pagination  
       show-size-changer
       v-model:current="current"
       v-model:pageSize="pageSize"
@@ -8,6 +8,7 @@
       :total="totalCount"
       @showSizeChange="onShowSizeChange"
       @change="onChange"
+      :show-total="total => `总共 ${total}条`"
     >
       <template #buildOptionText="pagesize">
         <span>{{ pagesize.value }}条/页</span>
@@ -26,6 +27,9 @@ import {defineComponent,ref,reactive,watch,toRefs} from 'vue'
       isCard:bool()
     },
     setup(props, { emit }) {
+      //Global.Logger().info(props.pagesize, "props");
+      // let pageSize = ref<any>(1);
+      // let current = ref<any>(10);
       let pageSizeOptions = ref<string[]>();
       if (props.isCard === true) {
         pageSizeOptions = ref<string[]>(['8', '16', '24', '32']);
@@ -40,20 +44,22 @@ import {defineComponent,ref,reactive,watch,toRefs} from 'vue'
       });
       //跳转页面
       const onChange = (pageNumber: number) => {
+        //Global.Logger().info("Page: ", pageNumber);
         emit('pageChange', pageNumber);
       };
 
       const onShowSizeChange = (current: number, pageSize: number) => {
+        //Global.Logger().info(current, pageSize, "pagina");
         emit('sizeChange', pageSize);
       };
       watch(props, () => {
+        //Global.Logger().info(props, "props");
         state.pageSize = props.pagesize;
         state.current = props.pageindex;
         state.totalCount = props.totalCount;
+        //Global.Logger().info("state", state);
       });
       return {
-        // pageSize,
-        // current,
         onShowSizeChange,
         ...toRefs(state),
         onChange,

@@ -1,9 +1,8 @@
 
-const routeName = 'home';
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/test',
-    name: 'test',
+    path: '/main/test',
+    name: 'main-test',
     component: () => import('@/views/back/welcome/index.vue'),
     meta: {
       index: 1,

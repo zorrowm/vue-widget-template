@@ -1,7 +1,7 @@
-import type { ProjectConfig,MenuSetting } from "#/config";
+import type { ProjectConfig, HeaderSetting, MenuSetting } from "#/config";
 import projectSetting from "@/settings/projectSetting";
 
-import { Storage, deepMerge,H5Tool,Global } from "xframelib";
+import { Storage, deepMerge,H5Tool } from "xframelib";
 import { defineStore, _DeepPartial } from "pinia";
 
 const PROJ_CONFIG_KEY = "PROJ_SETTINGS_KEY";
@@ -109,7 +109,6 @@ const appStore = defineStore("app", {
     },
     resizeHandler()
     {
-      Global.Logger().debug('窗体大小改变了~~~~~');
       this.layoutContentWidth=document.body.clientWidth-this.layoutSiderWidth;
       this.layoutContentHeight=document.body.clientHeight - this.layoutFooterHeight - this.layoutHeaderHeight;
       this.saveCacheStore();
@@ -117,9 +116,9 @@ const appStore = defineStore("app", {
   },
 });
 function resizeHandler()
-{
-  const appState=appStore();
-  appState.resizeHandler();
+{  
+   const appState=appStore();  
+   appState.resizeHandler();
 }
 //监听变化
 H5Tool.windowResizeHandler(resizeHandler);

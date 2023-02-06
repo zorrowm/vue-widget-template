@@ -1,6 +1,6 @@
 import mainroutes from './modules/index';
 import { getRouteURL } from '@/utils/sysTool';
-const path = '/';
+const path = '/main';
 const mainLayout = {
   path,
   name: 'Main',

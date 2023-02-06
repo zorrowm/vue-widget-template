@@ -1,7 +1,7 @@
 <template>
 <div class="topHeaderWidget clearfix">
     <div class="centerTitle">
-     <span v-if="iscenterTitle">{{ siteTitle }}</span> 
+     <!-- <span v-if="iscenterTitle">{{ siteTitle }}</span>  -->
     </div>
     <div class="fr" style="position:relative;height:100%">
       <div class="right-options">

@@ -14,6 +14,7 @@ import { computed, defineComponent, reactive, toRefs, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { string } from 'vue-types';
 import MenuItem from './menuItem.vue';
+import {Global} from 'xframelib';
 export default defineComponent({
   components: {
     MenuItem

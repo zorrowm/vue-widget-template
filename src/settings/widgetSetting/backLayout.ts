@@ -10,7 +10,7 @@ const defaultWidgetCofig: Array<IWidgetConfig> = [
     id: 'HeaderTitleWidget',
     label: '头部栏',
     container: LayoutContainerEnum.top,
-    component: () => import('@/widgets/layouts/HeaderTitleWidget.vue'),
+    component: () => import('@/widgets/back/HeaderTitleWidget.vue'),
     preload: true
   },
   {
@@ -18,7 +18,7 @@ const defaultWidgetCofig: Array<IWidgetConfig> = [
     id: 'LogoTitleWidget',
     label: '图标标题',
     container: LayoutContainerEnum.top,
-    component: () => import('@/widgets/layouts/LogoTitleWidget.vue'),
+    component: () => import('@/widgets/back/LogoTitleWidget.vue'),
     preload: true,
     afterid:'HeaderTitleWidget'
   },

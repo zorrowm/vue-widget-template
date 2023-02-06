@@ -43,7 +43,7 @@ const setting: ProjectConfig = {
     //上侧Header栏高度64px
     height: 64,
     //居中显示Title
-    centerTitle: false,
+    centerTitle: true,
     // 显示全屏按钮
     showFullScreen: true,
     //是否显示收缩按钮

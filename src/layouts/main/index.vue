@@ -19,7 +19,11 @@ export default defineComponent({
       if (evt.layoutID === layoutIDRef.value) {
         Global.Logger().debug(evt, 'loadedHandler');
         //服务Cesium大屏的
-        Global.DefaultLayoutManager = evt.layoutManager;
+        if(!Global.LayoutMap)
+        {
+          Global.LayoutMap=new Map<string,any>();
+        }
+        Global.LayoutMap.set(evt.layoutID,evt.layoutManager);;
       }
     }
     return {

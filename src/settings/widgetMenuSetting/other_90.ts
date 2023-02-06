@@ -1,6 +1,6 @@
 import { MenuItemEnum } from '@/enums/menuEnum';
-import type { IWidgetMenu } from '@/models/IRoleModels';
-const menuCofig: Array<IWidgetMenu> = [
+import type { IMenuConfig } from '#/menuConfig';
+const menuCofig: Array<IMenuConfig> = [
   {
     name: '示例',
     index: 99,

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="box">
-			<Icon icon="mdi:home" />
+			<Icon icon="mdi:home" />  Main 布局的默认测试页面！
       <a-descriptions title="系统信息" bordered>
         <!-- <a-descriptions-item key="IP" label="IP">
           {{ userInfo.IP }}

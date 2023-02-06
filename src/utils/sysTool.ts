@@ -1,5 +1,5 @@
 import { Router,RouteRecordRaw } from 'vue-router';
-import { H5Tool,Global } from 'xframelib';
+import { H5Tool } from 'xframelib';
 
 /**
  * 获取当前系统的ID

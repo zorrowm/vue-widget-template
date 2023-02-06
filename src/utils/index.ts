@@ -3,8 +3,6 @@ import type { App, Plugin } from 'vue';
 
 import { unref } from 'vue';
 import { isObjectX } from 'xframelib';
-import Logger from './Logger';
-export {Logger};
 
 export const noop = () => {};
 
@@ -91,3 +89,23 @@ export const withInstall = <T>(component: T, alias?: string) => {
   };
   return component as T & Plugin;
 };
+
+export function getRGBColor(color16: string):number[] {
+  var color = color16.toLowerCase();
+    // 如果只有三位的值，需变成六位，如：#fff => #ffffff
+    if (color.length === 4) {
+      var colorNew = '#';
+      for (var i = 1; i < 4; i += 1) {
+        const tmp = color.slice(i, i + 1);
+        colorNew += tmp.concat(tmp);
+      }
+      color = colorNew;
+    }
+    // 处理六位的颜色值，转为RGB
+    var colorChange: number[] = [];
+    for (var i = 1; i < 7; i += 2) {
+      colorChange.push(parseInt('0x' + color.slice(i, i + 2)));
+    }
+    return colorChange
+  return [];
+}

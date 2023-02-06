@@ -1,11 +1,11 @@
 <template>
-  <LayoutContainer ref="backLayoutContainer" class="layoutContainerCSSVar" :widgetConfig="configRef"
+  <LayoutContainer id="backLayoutContainer" class="layoutContainerCSSVar" :widgetConfig="configRef"
     :layoutID="layoutIDRef" @containerLoaded="loadedHandler" />
 </template>
 
 <script lang="ts">
 import widgetCofig from '@/settings/widgetSetting/index';
-import { defineComponent, onMounted, ref, watch,computed } from "vue";
+import { defineComponent, onMounted, ref, watch } from "vue";
 import { Global, H5Tool, LayoutContainer, LayoutManager } from 'xframelib';
 import { appStore } from '@/store';
 import { storeToRefs } from 'pinia';
@@ -16,19 +16,21 @@ export default defineComponent({
   },
   setup(props, { attrs, slots, emit }) {
     const configRef = ref(widgetCofig);
-    const backLayoutContainer = ref();
     const layoutIDRef = ref('backLayout');
     //获取服务此Layout的layoutManager
     function loadedHandler(evt: any) {
       if (evt.layoutID === layoutIDRef.value) {
-        Global.Logger().debug(evt, 'loadedHandler');
+        Global.Logger().info(evt, 'loadedHandler');
         //服务Cesium大屏的
-        Global.BackLayoutManager = evt.layoutManager;
+        if(!Global.LayoutMap)
+        {
+          Global.LayoutMap=new Map<string,any>();
+        }
+        Global.LayoutMap.set(evt.layoutID,evt.layoutManager);
         //判断加载
-        loadInitWidgets(Global.BackLayoutManager);
+        loadInitWidgets(evt.layoutManager);
       }
     }
-
     const appState = appStore();
     const { leftCollapsed } = storeToRefs(appState);
     watch(() => leftCollapsed.value, () => {
@@ -39,6 +41,8 @@ export default defineComponent({
       const sideWidth = leftCollapsed.value ? appState.menuSetting?.minWidth : appState.menuSetting?.menuWidth;
       H5Tool.setCssVar('--leftSideWidth', sideWidth+'px');
     }
+    //必须先计算宽度
+    computeLeftMenuWidth();
     function loadInitWidgets(layoutManager:LayoutManager)
     {
       const isShowFooter=appState.showFooter;
@@ -52,16 +56,18 @@ export default defineComponent({
       //是否显示头部栏
       const isShowHeader=appState.headerSetting.show;
       const topheight=isShowHeader? appState.headerSetting.height:0;
-      H5Tool.setCssVar('--header-top-height', topheight+'px');
-      computeLeftMenuWidth();
+      const divElem=document.getElementById("backLayoutContainer");
+      if(divElem)
+      {
+        H5Tool.setCssVar('--header-top-height', topheight+'px',divElem);
+      }
     });
 
 
     return {
       configRef,
       layoutIDRef,
-      loadedHandler,
-      backLayoutContainer
+      loadedHandler
     };
   }
 });
@@ -73,14 +79,15 @@ export default defineComponent({
   top: var(--header-top-height);
   left: var(--leftSideWidth);
   background-color: var(--main-bg-color);
-  // height:100%;
-  width: unset;
+  width:calc(100% - var(--leftSideWidth));
   right: 0px;
-    pointer-events: auto;
+  pointer-events: auto;
+  overflow-y: auto;
 }
 
 :deep(.leftContainer) {
   top: var(--header-top-height);
+  width:var(--leftSideWidth);
   height: unset;
   bottom: 0px;
   pointer-events: unset;

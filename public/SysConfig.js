@@ -23,44 +23,41 @@ const SysConfig = {
      * 用户登录（统一用户登录）
      * http://192.168.1.12:83
      */
-    LoginAuthURL: 'http://211.103.133.129:183',
-    /**
-     * 图标在线服务地址
-     * http://192.168.1.12:85
-     */
-    IconServiceURL:'http://211.103.133.129:187',
-    /**
-     * 文件管理服务地址（统一文件管理：后台）
-     */
-    FileServiceURL: '', //文件管理
-    /**
-     * 文件管理（统一文件管理：前台）
-     */
-    FileOnlineURL: '', //文件管理，在线
-    /**
-     * 在线日志服务
-     */
-    LogServiceURL: '', //日志服务
-    /**
-     * Axios普通WebAPI的BaseURL
-     * 全局默认的http请求地址（一般与主hprose相同或不同）;文件上传地址
-     */
-    DefaultWebAPI: 'http://192.168.1.18:8002',
-    /**
-     * 默认HproseAPI的服务地址
-     */
-    DefaultHproseAPI: '', //http://192.168.1.109:1002/ImageAdmin
-
-    //*********其他Hprose或API服务***********/
-    // //数据管理
-    // DataHproseAPI: 'http://192.168.1.109:1003/DataManage',
-    // //数据集管理
-    // DatasetHproseAPI: 'http://192.168.1.109:1001/DataSource',
-    // //父级网站地址
-    // ParentWebsiteURL: 'http://localhost:3001'
-
-    //统一登录界面
-    // UILoginURL: 'http://192.168.1.5:180#/userlogin'
+     LoginAuthURL: "https://gis-auth.digsur.com",
+     /**
+      * 图标在线服务地址
+      * http://192.168.1.12:85http://192.168.1.121:187
+      */
+      IconServiceURL: "https://gis-icon.digsur.com/online",
+     /**
+      * 文件管理服务地址（统一文件管理：后台）
+      */
+     FileServiceURL: "", //文件管理
+     /**
+      * 文件管理（统一文件管理：前台）
+      */
+     FileOnlineURL: "", //文件管理，在线
+     /**
+      * 在线日志服务
+      */
+     LogServiceURL: "", //日志服务
+     /**
+      * Axios普通WebAPI的BaseURL
+      * 全局默认的http请求地址（一般与主hprose相同或不同）;文件上传地址
+      */
+     DefaultWebAPI: "",
+     /**
+      * 默认HproseAPI的服务地址
+      */
+     DefaultHproseAPI: "https://gis-image.digsur.com/ImageAdmin",
+     //数据集管理http://192.168.1.33:1001/DataSource 
+     DatasetHproseAPI: "https://gis-image.digsur.com/DataSource",
+     // DatasetHproseAPI: 'http://192.168.1.47:1001/DataSource',
+ 
+     //渲染样式色带图片
+     DefaultStyleColorImage: "https://gis-image.digsur.com",
+     //后台瓦片服务地址
+     WMTSService: "https://gis-image.digsur.com/IMGWMTS",
   },
   //#endregion
 

@@ -1,387 +1,395 @@
 <template>
-  <div style="overflow:hidden;margin:0 5px">
-    <div class="tableContent" :style="contentStyle">
-      <a-table :columns="columns" :data-source="tableData" :pagination="false" rowKey="Id"
-        :scroll="{ x: 1000, y: clientHeight - 220 }">
-        <template #bodyCell="{ text, column, record }">
-          <v-switch :case="column.key" v-if="column.key">
-            <template #operation>
-              <ActionMenu :currentRow="record" @doActionClick="doActionClick"
-                :default-menus="getRightDefaultMenus(record)" :append-menus="getRightMoreMenus(record)" />
-            </template>
-            <template #islocked>
-              <a-switch v-model:checked="record.Islocked" @change="changeLock(record)" size="small" />
-            </template>
-            <template #Role>
-              <a-popover placement="leftTop">
-                <template #content>
-                  <p>{{ record.Role.Name }}</p>
-                </template>
-                {{ record.Role.Name }}
-                >
-              </a-popover>
-            </template>
-            <template #RoleUser>
-              <span v-for="(item, index) in record.UserRoles" @click="ViewRole(item)"
-                v-if="record.UserRoles.length <= 3">
-                <a v-if="index != record.UserRoles.length - 1">{{ item.Role.Name }},</a>
-                <a v-else>
-                  {{ item.Role.Name }}
-                </a>
-              </span>
-              <span v-else>
-                <span v-for="(item, index) in record.UserRoles.slice(0, 3)" @click="ViewRole(item)">
-                  <a v-if="index != record.UserRoles.slice(0, 3).length - 1">{{ item.Role.Name }},</a>
-                  <a v-else>
-                    {{ item.Role.Name }}
-                  </a>
-                </span>
-                <span>
-                  <a-dropdown placement="bottom">
-                    <Icon icon='ant-design:ellipsis-outlined' style="color: rgb(144, 144, 255)" />
-                    <template #overlay>
-                      <a-menu>
-                        <a-menu-item v-for="(item, index) in record.UserRoles.slice(3)" :command="index" :key="index">
-                          <div @click="ViewRole(item)">
-                            {{ item.Role.Name }}
-                          </div>
-                        </a-menu-item>
-                      </a-menu>
-                    </template>
-                  </a-dropdown>
-                </span>
-              </span>
-            </template>
-          </v-switch>
-        </template>
-      </a-table>
-      <Pagination style="text-align: right;" :totalCount="totalCount" :pagesize="PageSize" :pageindex="PageIndex"
-        @pageChange="pageChange" @sizeChange="sizeChange" />
-    </div>
+    <div>
+    <TopFunBar :title="'服务列表'" @topBarClick="topBarClick" />
+    <a-table   size="small" :row-selection="rowSelection" :columns="columns" :data-source="tableData" :pagination="false" rowKey="name"
+    :scroll="scrollRef">
+      <template #bodyCell="{ text, column, record }">
+        <v-switch :case="column.key" v-if="column.key">
+          <template #operation>
+            <ActionMenu :currentRow="record" @doActionClick="doActionClick"
+              :default-menus="getRightDefaultMenus(record)" :append-menus="getRightMoreMenus(record)" />
+          </template>
+          <template #rule>
+            <span @click="ruleClick(record)">
+              <a-tag color="orange" style="cursor: pointer">
+                {{ text }}
+              </a-tag>
+            </span>
+          </template>
 
-    <ModalContainer :width="700" :content="modalContentRef" :visible="modalVisibleRef" :data="recordData"
-      :extra="extraRef" />
+          <template #style>
+            <span @click="styleFormclick(record)">
+              <a-tag color="cyan" style="cursor: pointer">
+                {{ text }}
+              </a-tag>
+            </span>
+          </template>
+
+          <!-- 转化 状态 -->
+          <template #precachestatus>
+            <span v-if="record.status != 0">正在进行</span>
+            <Icon icon="ant-design:check-circle-twotone" color="#52c41a" v-else />
+          </template>
+        </v-switch>
+      </template>
+    </a-table>
+
+    <Pagination style="text-align: right; margin-top: 5px" :totalCount="totalCount" :pagesize="PageSize"
+      :pageindex="PageIndex" @pageChange="pageChange" @sizeChange="sizeChange" />
   </div>
 </template>
 
 <script lang="ts">
-import {
-computed, defineComponent, onMounted, onUnmounted, reactive, ref, shallowRef, toRefs
-} from "vue";
-// import TopFunBar from "@/components/topFunBar/index.vue";
-import {
-GetUsersList, GetUsersListByRoleOrSystem, LockedUserList
-} from "@/api/AuthService";
-import ActionMenu from "@/components/Menu/ActionMenu.vue";
-import { loadModal } from '@/components/ModalContainer';
-import ModalContainer from '@/components/ModalContainer/index.vue';
-import Pagination from "@/components/Pagination/index.vue";
-import VSwitch from "@/components/VSwitch.vue";
+import ActionMenu from '@/components/Menu/ActionMenu.vue';
+import Pagination from '@/components/Pagination/index.vue';
+import TopFunBar from '@/components/TopFunBar/index.vue';
+import VSwitch from '@/components/VSwitch.vue';
 import { OffEventHandler, OnEventHandler } from '@/events';
 import TableEvent from '@/events/modules/TableEvent';
-import { userStore,appStore } from '@/store';
+import ServiceInfoService from '@/service/imageAdminDefault/ServiceInfoService';
+import { doLoadModal } from '@/utils/WidgetsTool';
+import { Icon } from '@iconify/vue';
+import { defineComponent, onMounted, onUnmounted, reactive, toRefs } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { Global } from 'xframelib';
 import { getDefaultMenus, getMoreMenus } from './models/ActionMenus';
 import { columns } from './models/TabColumns';
-import {Icon} from '@iconify/vue';
-import {storeToRefs} from 'pinia'
-import {Global} from 'xframelib'
+import {scrollRef} from '@/utils/scrollRef';
+import {OpenServiceTileJson, OpenURL} from '@/utils/urlUtils'
 export default defineComponent({
-  name: "userManage",
+  name: 'serviceList',
   components: {
-    // TopFunBar,
+    TopFunBar,
     Pagination,
     ActionMenu,
-    ModalContainer,
-    Icon,
+    Icon, 
     VSwitch
   },
-  setup(props, { emit }) {
-    const userState = userStore();
-    const appState = appStore();
-    const { layoutContentHeight,layoutContentWidth } = storeToRefs(appState);
-
+  props: {},
+  setup() {
     const tableState = reactive({
       tableData: [] as any,
       PageIndex: 1,
       PageSize: 10,
       totalCount: 0,
-      keyword: "",
+      keyword: '',
+      sortname: '',
+      sortway: 0
     });
-    const recordData = ref();
+    const state = reactive({
+      rowData: {} as any,
+      deleteArr: [] as any,
+      recordData: {} as any
+    });
+
+    const topBarClick = (val: string, searchValue: string) => {
+      switch (val) {
+        case 'searchWord':
+          searchWord(searchValue);
+          break;
+        case 'creatNew':
+          showModal('creatNew');
+          break;
+        case 'batchDelete':
+          batchDelete();
+          break;
+        case 'refresh':
+          initTable();
+          break;
+      }
+    };
     //#region 通用对话框的相关代码
-    //窗体额外的参数
-    const extraRef = ref<object>();
-    //对话框可见性
-    const modalVisibleRef = ref(false);
-    //对话框内容
-    const modalContentRef = shallowRef();
-    function doLoadModal(actionMethod: string, rowData?: Object) {
+    function showModal(actionMethod: string, rowData?: any) {
+      //Global.Logger().info(actionMethod, '---actionMethod---');
       let modalID: string = '';
-      extraRef.value = undefined;
-      //必须有的
-      modalVisibleRef.value = false;
+      let extraData:any;
       switch (actionMethod) {
-        case 'creatNew': //新建
-          modalID = 'userInfo';
-          //额外的参数
-          extraRef.value = {
-            title: '新建用户',
-            isNew: true
+        case 'copySrvice': //复制服务
+          modalID = 'editServiceID';
+          extraData = {
+            title: '复制服务',
+            isEdit: false,
+            isCopy: true
           };
           break;
-        case 'edit': //编辑用户
-          modalID = 'userInfo';
-          //额外的参数
-          extraRef.value = {
-            title: '编辑用户',
+        case 'editSrvice': //编辑服务
+          modalID = 'editServiceID';
+          extraData = {
+            title: '编辑服务',
             isEdit: true,
+            isCopy: false
           };
           break;
-        case 'roleEdit': //编辑角色
-          modalID = 'roleEdit';
-          extraRef.value = {
-            title: '编辑角色'
+        case 'creatNew': //新建服务
+          //Global.Logger().info('我是新建！');
+          modalID = 'editServiceID';
+          extraData = {
+            title: '新建服务',
+            isEdit: false,
+            isCopy: false
           };
           break;
-        case 'roleInfo': //查看角色
-          modalID = 'roleInfo';
-          extraRef.value = {
-            title: '查看角色'
+        case 'add':
+          modalID = 'addServiceData';
+          extraData = {
+            title: `向${rowData?.name}添加数据`
+          };
+          break;
+        case 'smallPreCache':
+          modalID = 'rebuildThumbnailID';
+          extraData = {
+            title: '小级别预缓存',
+            isSmallPreCache: true,
+            isRebuildThumbnail: false
+          };
+          break;
+        case 'viewMetaData': //查看元数据
+          modalID = 'viewMetaDataID';
+          extraData = {
+            title: `服务${rowData?.name}元数据信息`
+          };
+          break;
+        case 'viewServiceInfo': //查看服务信息
+          //Global.Logger().info('选中了查看服务信息');
+          modalID = 'viewServiceMessageID';
+          extraData = {
+            title: '查看服务信息'
+          };
+          break;
+        case 'editServiceInfo': //编辑服务信息
+          modalID = 'editServiceMessageID';
+          extraData = {
+            title: '编辑服务信息'
+          };
+          break;
+        case 'rebuildThumbnail': //重建缩略图
+          modalID = 'rebuildThumbnailID';
+          extraData = {
+            title: '重建缩略图',
+            isSmallPreCache: false,
+            isRebuildThumbnail: true
+          };
+          break;
+        case 'getImageURL': //获取影像链接
+          modalID = 'getImageURLID';
+          extraData = {
+            title: '获取影像链接'
+          };
+          break;
+        case 'TileSchemaForm': //查看切片方案
+          modalID = 'TileSchemaForm';
+          extraData = {
+            title: '切片方案：' + rowData
+          };
+          break;
+        case 'StyleForm': //渲染样式
+          modalID = 'StyleForm';
+          extraData = {
+            title: '渲染样式：' + rowData
           };
           break;
       }
       if (modalID) {
-        recordData.value = rowData; //赋值数据
-        loadModal(modalID).then(item => {
-          Global.Logger().debug(modalID, item, "加载modal");
-          modalVisibleRef.value = true;
-          modalContentRef.value = item;
-        });
+          const modalData={
+                modalID,
+                extraData,
+                rowData,
+                width:700
+            };
+          doLoadModal(modalData);
       }
     }
     //#endregion
-
-
-    // 顶部功能
-    const topBarClick = (val: string, searchValue: string) => {
-      switch (val) {
-        case "searchWord":
-          searchWord(searchValue);
-          break;
-        case "refresh":
-          initTable();
-          Global.Message?.msg("刷新成功");
-          break;
-        case "creatNew":
-          doLoadModal(val);
-          break;
-        // case "searchUser":
-        //   searchUser();
-        //   break;
-        case "RoleFilltr":
-          RoleFilltr(searchValue);
-          break;
-        case "SysFilltr":
-          SysFilltr(searchValue);
-          break;
-      }
-    };
     const doActionClick = (val, row) => {
+      //Global.Logger().info(val, 'doActionClick');
       switch (val) {
-        case "edit":
-        case "roleEdit":
-          doLoadModal(val, row);
+        case 'preview':
+          previewMap(row);
           break;
-        case "userinfo":
-        case 'roleInfo':
-          doLoadModal('roleInfo', row);
+        case 'add':
+        case 'smallPreCache':
+        case 'preCache':
+        case 'copySrvice':
+        case 'editSrvice':
+        case 'viewServiceInfo':
+        case 'editServiceInfo':
+        case 'rebuildThumbnail':
+        case 'getImageURL':
+        case 'viewMetaData':
+          showModal(val, row);
           break;
-        case "RoleInfo":
-          const roleArr: any[] = []
-          for (let i = 0; i < row.UserRoles.length; i++) {
-            roleArr.push(row.UserRoles[i].Role);
-          }
-          doLoadModal('roleInfo', roleArr);
+        case 'seriviceTileJson':
+        OpenServiceTileJson('s:'+row.name);
           break;
-        case "delete":
-          // Delete(row.Id);
+        case 'delete':
+          state.deleteArr.push(row.name);
+          batchDelete();
           break;
-        // case "userinfo":
-        //   ViewRoleInfo(row);
-        //   break;
+        case 'toolIndex':
+          fixIndex(row);
+          break;
+        case 'cleanNowCache':
+          cleanCache(row);
+          break;
+        // 清空即时缓存
       }
+      state.rowData = row;
     };
-    //表格点击-查看角色
-    const ViewRole = (row) => {
-      doActionClick('roleInfo', [row.Role]);
+    //浏览地图
+    const router = useRouter();
+    const previewMap = row => {
+      OpenURL(router,'/mappreview',{ id: row.name, type: 's' })
     };
-
     //生成表格
-    const initTable = async () => {
-      const result: any = await GetUsersList(
+    const initTable = () => {
+      //Global.Logger().info('我是inittable我执行了------------------');
+      ServiceInfoService.GetAllServices(
         tableState.keyword,
         tableState.PageIndex,
-        tableState.PageSize
-      );
-      Global.Logger().debug(result, "用户列表--");
-      if (result != undefined) {
-        tableState.tableData = result.arrayList;
-        tableState.totalCount = result.TotalCount;
-        for (let i = 0; i < tableState.tableData.length; i++) {
-          tableState.tableData[i].isShow = false;
-          let user = userState.name;
-          if (user == tableState.tableData[i].CreateName) {
-            tableState.tableData[i].isShow = true;
-          }
-        }
-      } else {
-        tableState.tableData = [];
-        tableState.totalCount = 0;
-      }
-    };
-    //筛选角色
-    const RoleFilltr = async (val) => {
-      if (val) {
-        let res: any = await GetUsersListByRoleOrSystem(
-          val,
-          "",
-          tableState.PageIndex,
-          tableState.PageSize
-        );
-         Global.Logger().debug(res, "角色筛选");
+        tableState.PageSize,
+        tableState.sortname,
+        tableState.sortway
+      ).then(res => {
         if (res != undefined) {
           tableState.tableData = res.arrayList;
-          tableState.totalCount = res.TotalCount;
+          tableState.totalCount = res.totalCount;
           for (let i = 0; i < tableState.tableData.length; i++) {
-            tableState.tableData[i].isShow = false;
-            let user = userState.name;
-            if (user == tableState.tableData[i].CreateName) {
-              tableState.tableData[i].isShow = true;
+            tableState.tableData[i].level =
+              tableState.tableData[i].minlevel + '~' + tableState.tableData[i].maxlevel;
+            if (tableState.tableData[i].precache === 0) {
+              tableState.tableData[i].cachestatus = '无';
+            } else {
+              tableState.tableData[i].cachestatus =
+                '缓存级别:' + tableState.tableData[i].precachelevel;
             }
           }
         } else {
           tableState.tableData = [];
           tableState.totalCount = 0;
         }
-      } else {
-        initTable();
-      }
+      });
     };
-    //筛选系统
-    const SysFilltr = async (val) => {
-      if (val) {
-        let res: any = await GetUsersListByRoleOrSystem(
-          "",
-          val,
-          tableState.PageIndex,
-          tableState.PageSize
-        );
-        Global.Logger().debug(res, "系统筛选");
-        if (res != undefined) {
-          tableState.tableData = res.arrayList;
-          tableState.totalCount = res.TotalCount;
-          for (let i = 0; i < tableState.tableData.length; i++) {
-            tableState.tableData[i].isShow = false;
-            let user = userState.name;
-            if (user == tableState.tableData[i].CreateName) {
-              tableState.tableData[i].isShow = true;
-            }
-          }
-        } else {
-          tableState.tableData = [];
-          tableState.totalCount = 0;
+    //复选框回调
+    const rowSelection = {
+      onChange: (selectedRowKeys: any[], selectedRows: any[]) => {
+        //Global.Logger().info(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        state.deleteArr = [];
+        for (let i = 0; i < selectedRows.length; i++) {
+          state.deleteArr.push(selectedRows[i].name);
         }
-      } else {
-        initTable();
-      }
+      },
+      // getCheckboxProps: (record: any) => ({
+      //   disabled: record.name === 'Disabled User', // Column configuration not to be checked
+      //   name: record.name
+      // })
     };
-    //锁定用户
-    const changeLock = async (row) => {
-      // LockedUserList(row.Id, row.Islocked);
-    };
-
     //监听当前页面条数
-    const sizeChange = (value) => {
+    const sizeChange = value => {
       tableState.PageSize = value;
       initTable();
     };
     //监听当前页数
-    const pageChange = (value) => {
+    const pageChange = value => {
       tableState.PageIndex = value;
       initTable();
     };
-
-    // 搜索
-    const searchWord = (val) => {
-      tableState.PageIndex = 1;
+    //搜索
+    const searchWord = val => {
       tableState.keyword = val;
+      tableState.PageIndex = 1;
       initTable();
     };
-
-    //删除
-    const Delete = async (id) => {
-      const result = true;
-      if (result) {
-        Global.Message?.msg("删除成功");
-        initTable();
+    //批量删除
+    const batchDelete = () => {
+      if (state.deleteArr.length > 0) {
+        ServiceInfoService.DeleteServiceAsync(state.deleteArr).then(res => {
+          // //Global.Logger().info(res, "res批量删除");
+          if (res === true) {
+            Global.Message?.msg('删除服务成功!');
+            initTable();
+          } else {
+            Global.Message?.err('删除服务失败!');
+          }
+        });
       } else {
-        Global.Message?.err("删除用户失败");
+        Global.Message?.err('请选择数据!');
       }
     };
 
-    const contentStyle = computed(() => {
-      return `height:${layoutContentHeight.value}px;width:${layoutContentWidth.value}px`;
-    });
+    //修复索引
+    const fixIndex = row => {
+      ServiceInfoService.ReconstructionServiceIndexAsync(row.name, '').then(res => {
+        //Global.Logger().info(res, 'res修复索引');
+        if (res === true) {
+          Global.Message?.msg('修复索引成功!');
+          initTable();
+        } else {
+          Global.Message?.err('修复索引失败!');
+        }
+      });
+    };
+    //清空即时缓存
+    const cleanCache = row => {
+      ServiceInfoService.DeletServiceRedisCacheAsync(row.name).then(res => {
+        //Global.Logger().info(res, 'res清空即时缓存');
+        if (res === true) {
+          Global.Message?.msg('清空即时缓存成功!');
+          initTable();
+        } else {
+          Global.Message?.err('清空即时缓存失败!');
+        }
+      });
+    };
+    const ruleClick = row => {
+      showModal('TileSchemaForm', row.rule);
+    };
+    // //点击渲染样式
+    const styleFormclick = row => {
+      showModal('StyleForm', row.style);
+    };
 
-    const clientHeight=computed(() =>layoutContentHeight.value);
+    const route = useRoute();
     onMounted(() => {
       OnEventHandler(TableEvent.RefeshTable, initTable);
-
-      initTable();
+      //Global.Logger().info(route.query.name, '我是参数');
+      if (route.query.name != '') {
+        searchWord(route.query.name);
+      }
+      //Global.Logger().info(route.query.name, '列表页路由跳转得到的参数');
     });
+    onUnmounted(() => {
+      OffEventHandler(TableEvent.RefeshTable, initTable);
+    });
+    //获取表格的菜单栏
     function getRightDefaultMenus(rowItem) {
       //TODO:根据传入Row进行过滤
+      const hasData = rowItem.countdata === 0;
       const menusArray = [...getDefaultMenus()];
-      if (!rowItem.isShow)
+      if (hasData)
         menusArray.shift();
       return menusArray;
     }
     function getRightMoreMenus(rowItem) {
       //TODO:根据传入Row进行过滤
-      return getMoreMenus();
+      const hasData = rowItem.countdata != 0;
+      return getMoreMenus(hasData);
     }
-
-    onUnmounted(() => {
-      OffEventHandler(TableEvent.RefeshTable, initTable);
-    });
-
     return {
       topBarClick,
+      rowSelection,
+      columns,
       ...toRefs(tableState),
-      recordData,
+      initTable,
       sizeChange,
       pageChange,
-      columns,
+      doActionClick,
+      ...toRefs(state),
       getRightDefaultMenus,
       getRightMoreMenus,
-      doActionClick,
-      Delete,
-      initTable,
-      changeLock,
-      contentStyle,
-      ViewRole,
-      doLoadModal,
-      modalContentRef,
-      modalVisibleRef,
-      extraRef,
-      clientHeight
+      styleFormclick,
+      ruleClick,
+      scrollRef
     };
-  },
+  }
 });
 </script>
-<style scoped lang="scss">
-.tableContent {
-  padding: 0 2px;
-  overflow: auto;
-}
-</style>

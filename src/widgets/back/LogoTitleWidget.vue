@@ -1,7 +1,7 @@
 <template>
   <div class="logo" v-if="getShowLogo">
     <img src="/img/logo.png" alt="" />
-    <h2 v-show="!leftCollapsed" v-if="!iscenterTitle" class="title">{{ siteTitle }}</h2>
+    <h2 v-show="!leftCollapsed" class="title">{{ siteTitle }}</h2>
   </div>
 
 </template>
