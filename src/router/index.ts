@@ -10,9 +10,11 @@ import mainLayout from '@/router/main';
 import backLayout from '@/router/back';
 import bigScreenLayout from '@/router/bigScreen';
 import sideLineLayout from '@/router/sideLine';
+import sideBarLayout from '@/router/sideBar';
+
 
 // 当前业务视图路由，用于动态获取业务路由
-export const bussinessRoutes: Array<RouteRecordRaw> = [mainLayout, backLayout,bigScreenLayout,sideLineLayout];//
+export const bussinessRoutes: Array<RouteRecordRaw> = [mainLayout, backLayout,bigScreenLayout,sideLineLayout,sideBarLayout];//
 //用于初始化，只加载系统的路由
 //IsNoLogin: true, 无需登录时，初始化全部路由
 export const systemRoutes: Array<RouteRecordRaw> =Global.Config.UI.IsNoLogin?[...common, ...bussinessRoutes]: common;//[...common, ...bussinessRoutes]; //[mainLayout, backLayout, ...common];//全部路由

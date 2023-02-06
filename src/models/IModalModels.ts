@@ -17,6 +17,7 @@ export interface IModalConfig {
 //用于Modal窗体传递参数的
 export interface IExtraProperty {
   title?: string; //标题
+  footer?:string;//底部按钮，null为空,undefined为默认
 }
 
 /**

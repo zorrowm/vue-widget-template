@@ -5,6 +5,7 @@
     :title="titleRef"
     @ok="handleOk"
     @cancel="handleCancel"
+    :footer="footerRef"
   >
     <component v-bind:is="content" :extra="extra" :data="dataRef"></component>
   </a-modal>
@@ -30,7 +31,6 @@
       //const widthRef = computed(() => props.width);
       const visibleRef = ref<boolean>(props.visible);
       const dataRef=ref(props.data);
-
       watch(
         () => props.visible,
         (newVal, oldVal) => {
@@ -51,6 +51,12 @@
         if (props.extra?.title) return props.extra?.title;
         else if (props.content) return props.content.title;
         else return '对话框';
+      });
+
+      //底部按钮栏
+       const footerRef = computed(() => {
+        if (props.extra?.footer) return props.extra?.footer;
+        else return undefined;
       });
 
       //确定
@@ -86,7 +92,8 @@
         visibleRef,
         handleOk,
         titleRef,
-        handleCancel
+        footerRef,
+        handleCancel,
       };
     }
   });
