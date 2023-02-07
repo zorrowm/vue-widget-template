@@ -33,7 +33,7 @@ export default defineComponent({
     onMounted(() => {
       //是否显示头部栏
       const isShowHeader=appState.headerSetting.show;
-      const topheight=0;//isShowHeader? appState.headerSetting.height:0;
+      const topheight=10;//isShowHeader? appState.headerSetting.height:0;
       H5Tool.setCssVar('--header-top-height', topheight+'px');
     });
 

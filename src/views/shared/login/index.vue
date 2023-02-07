@@ -123,8 +123,10 @@ export default defineComponent({
         {
           return;
         }
+        Global.Logger().debug(roleRight,'登录后的系统权限')
         if (roleRight) {
           const menus = getRightRoutes();
+          Global.Logger().debug(menus,'系统路由权限')
           let first:any;
           menus?.forEach(item => {
             if(!first) first=item;
