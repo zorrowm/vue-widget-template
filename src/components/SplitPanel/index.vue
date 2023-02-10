@@ -19,6 +19,7 @@
 import { defineComponent, ref } from "vue";
 
 import { throttle } from "lodash-es";
+import { H5Tool } from "xframelib";
 
 type RefElement = Nullable<HTMLElement>;
 
@@ -42,6 +43,7 @@ export default defineComponent({
       document.documentElement.style.userSelect = "unset";
       document.documentElement.removeEventListener("mousemove", onDrag);
       document.documentElement.removeEventListener("mouseup", dragEnd);
+      H5Tool.dispatchWindowResize();
     };
 
     // 鼠标按下

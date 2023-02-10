@@ -11,11 +11,12 @@
   </a-modal>
 </template>
 <script lang="ts">
-  import { EmitMsg } from '@/events';
+  import { EmitMsg,OnEventHandler,OffEventHandler } from '@/events';
   import { IExtraProperty } from '@/models/IModalModels';
   import { object,number,bool,oneOfType } from "vue-types";
-  import {defineComponent,ref,watch,computed } from 'vue'
+  import {defineComponent,ref,watch,computed,onMounted, onUnmounted } from 'vue'
   import { Global } from 'xframelib';
+  import WidgetsEvent from "@/events/modules/WidgetsEvent";
   
   export default defineComponent({
     name: 'ModalContainer',
@@ -87,6 +88,16 @@
         if (props.content) EmitMsg(props.content.name, false);
       };
 
+      function closeModal(data)
+      {
+        visibleRef.value=false;
+      }
+      onMounted(()=>{
+        OnEventHandler(WidgetsEvent.ModalContainerWidget_CloseModal,closeModal);
+      })
+      onUnmounted(()=>{
+        OffEventHandler(WidgetsEvent.ModalContainerWidget_CloseModal,closeModal);
+      })
       return {
         dataRef,
         visibleRef,
