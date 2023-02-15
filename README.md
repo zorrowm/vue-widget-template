@@ -3,6 +3,10 @@
 全面基于Widget思想的开发模板
 积累记录
 
+2023.02.15 
+增加解决图标离线使用代码
+遍历生成离线图标文件的工具IconOffline.exe
+
 2023.02.10 
 为ModalContainer增加通过事件关闭窗口,调用doCloseModal方法
 修改其他小问题

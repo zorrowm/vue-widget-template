@@ -3,7 +3,7 @@ import App from './App.vue';
 //模板添加的
 import { setupRouter } from './router/index';
 import {setupGlobDirectives} from './directives/index';
-import { init } from 'xframelib';
+import { init, Global } from 'xframelib';
 import 'xframelib/dist/index.css';
 import { getSystemPKG, getSystemID } from '@/utils/sysTool';
 import { createPinia } from 'pinia';
@@ -26,6 +26,14 @@ const sysID = getSystemID();
 //分组名，工程名
 const sysGroup = getSystemPKG().name;
 init(message, sysID, sysGroup);
+
+//离线使用图标：生效，IconServiceURL配置为空
+if(!Global.Config.ServiceURL.IconServiceURL)
+{
+  import('./components/IconOffline').then(it=>{
+    it.default();
+  });
+}
 
 // 创建pinia 实例
 const pinia = createPinia();
