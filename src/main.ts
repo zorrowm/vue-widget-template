@@ -27,14 +27,6 @@ const sysID = getSystemID();
 const sysGroup = getSystemPKG().name;
 init(message, sysID, sysGroup);
 
-//离线使用图标：生效，IconServiceURL配置为空
-if(!Global.Config.ServiceURL.IconServiceURL)
-{
-  import('./components/IconOffline').then(it=>{
-    it.default();
-  });
-}
-
 // 创建pinia 实例
 const pinia = createPinia();
 const app = createApp(App);

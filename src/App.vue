@@ -23,7 +23,12 @@
       //注册自己的IconAPIProvider
       if(Global.Config.ServiceURL.IconServiceURL)
       addAPIProvider('', { resources: [Global.Config.ServiceURL.IconServiceURL]});
-
+      else
+      {//离线使用图标：生效，IconServiceURL配置为空
+        import('./components/IconOffline').then(it=>{
+          it.default();
+        });
+      }
       onMounted(() => {
         onLockListener(); //长时间不操作退出
       });
