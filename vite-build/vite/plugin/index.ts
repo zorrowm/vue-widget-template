@@ -10,6 +10,7 @@ import { configVisualizerConfig } from './visualizer';
 import { configHmrPlugin } from './hmr';
 import { configViteUnplugin } from './unplugin';
 // import cesium from 'vite-plugin-cesium';
+import pluginFS from "vite-plugin-fs";
 
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
@@ -21,12 +22,15 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   } = viteEnv;
 
   const vitePlugins: (Plugin | Plugin[])[] = [
+    //文件输出
+    pluginFS(),
     // have to
     vue(),
     // have to
     vueJsx(),
     //三维
-    // cesium()
+    // cesium(),
+
   ];
 
   //unplugin-vue-components isBuild &&

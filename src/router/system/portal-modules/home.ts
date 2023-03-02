@@ -11,17 +11,17 @@ const routes: Array<RouteRecordRaw> = [
       isSystem: true
     }
   },
-  {
-    path: '/api',
-    name: 'api',
-    component: () => import('@/views/main/api/index.vue'),
-    meta: {
-      index: 5,
-      title: '开发接口',
-      hidden: true,
-      isSystem: true
-    }
-  }
+  // {
+  //   path: '/api',
+  //   name: 'api',
+  //   component: () => import('@/views/main/api/index.vue'),
+  //   meta: {
+  //     index: 5,
+  //     title: '开发接口',
+  //     hidden: true,
+  //     isSystem: true
+  //   }
+  // }
 ];
 
 export default routes;

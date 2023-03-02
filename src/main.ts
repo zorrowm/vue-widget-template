@@ -11,6 +11,7 @@ import { message } from 'ant-design-vue';
 //dev阶段打开，build注销
 import 'ant-design-vue/dist/antd.css';
 
+
 if(window.global===undefined)
 {
   window.global=globalThis;
@@ -27,6 +28,15 @@ const sysID = getSystemID();
 const sysGroup = getSystemPKG().name;
 init(message, sysID, sysGroup);
 
+// fs.writeFile("./MenuRoutes.json" ,"12345");
+// const fullPath=path.join(__dirname, "hello_world.txt");
+
+// const writeStream = new fsm.WriteStream("MenuRoutes.json");
+// writeStream.write('646546545465');
+// fs.writeFile("MenuRoutes.json" ,"12345");
+// writeFileSync(join(__dirname, "MenuRoutes.json"), "13216464", {
+//   flag: 'w',
+// });
 // 创建pinia 实例
 const pinia = createPinia();
 const app = createApp(App);

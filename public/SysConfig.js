@@ -25,8 +25,7 @@ const SysConfig = {
      */
      LoginAuthURL: "https://gis-auth.digsur.com",
      /**
-      * 图标在线服务地址
-      * http://192.168.1.12:85http://192.168.1.121:187
+      * 图标在线服务地址（不能带"/"）
       */
       IconServiceURL: "https://gis-icon.digsur.com/online",
      /**

@@ -48,15 +48,15 @@ const routes: Array<RouteRecordRaw> = [
       icon: 'ant-design:setting-outlined'
     }
   },
-  {
-    path: 'code',
-    name: 'codeview',
-    component: () => import('@/views/sideLine/code/index.vue'),
-    meta: {
-      title: '源码',
-      icon: 'ant-design:code-outlined'
-    }
-  }
+  // {
+  //   path: 'code',
+  //   name: 'codeview',
+  //   component: () => import('@/views/sideLine/code/index.vue'),
+  //   meta: {
+  //     title: '源码',
+  //     icon: 'ant-design:code-outlined'
+  //   }
+  // }
   // {
   //   path: '/print',
   //   name: 'printview',
