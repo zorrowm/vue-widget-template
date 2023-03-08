@@ -57,15 +57,6 @@ const routes: Array<RouteRecordRaw> = [
   //     icon: 'ant-design:code-outlined'
   //   }
   // }
-  // {
-  //   path: '/print',
-  //   name: 'printview',
-  //   component: () => import('@/views/sideLine/print/index.vue'),
-  //   meta: {
-  //     title: '打印出图',
-  //     icon: 'icon-dayingji'
-  //   }
-  // }
 ];
 
 export default routes;

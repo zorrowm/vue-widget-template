@@ -6,8 +6,6 @@ const mainLayout = {
   component: () => import('@/layouts/bigScreen/index.vue'),
   meta: {
     title: '',
-    hidden: true,
-    isSystem: true
   },
   children: [
     {
@@ -15,8 +13,7 @@ const mainLayout = {
       name: 'test',
       meta: {
         title: 'routes.home',
-        icon: 'iconfont icon-Home-Filled',
-        isSystem: true
+        icon: 'iconfont icon-Home-Filled'
       },
       component: () => import('@/views/bigScreen/testView.vue') 
     },
@@ -25,8 +22,7 @@ const mainLayout = {
       name: 'test2',
       meta: {
         title: 'routes.home',
-        icon: 'iconfont icon-Home-Filled',
-        isSystem: true
+        icon: 'iconfont icon-Home-Filled'
       },
       component: () => import('@/views/bigScreen/test2View.vue') 
     }

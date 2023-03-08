@@ -11,8 +11,8 @@ const mainLayout: RouteRecordRaw = {
   component: () => import('@/layouts/sideLine/index.vue'),
   meta: {
     title: '',
-    hidden: true,
-    isSystem: true
+    layoutID:'sideLineLayout',
+    hidden: true
   },
   children: mainroutes //[]
 };

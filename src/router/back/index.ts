@@ -9,8 +9,9 @@ const backLayout = {
   redirect: getRouteURL(backroutes[0]?.path, path), //backroutes[0]?.path ?? '',
   meta: {
     title: '',
+    layoutID:'backLayout',
     hidden: true,
-    isSystem: true
+    isadmin:true
   },
   children: backroutes
 };

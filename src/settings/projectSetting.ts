@@ -1,9 +1,7 @@
 import type { ProjectConfig } from "#/config";
 import {
   MenuTypeEnum,
-  MenuModeEnum,
-  TriggerEnum,
-  MixSidebarTriggerEnum,
+  MenuModeEnum
 } from "@/enums/menuEnum";
 
 // ! 改动后需要清空浏览器缓存

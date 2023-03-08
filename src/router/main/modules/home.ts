@@ -1,3 +1,4 @@
+import { RouteRecordRaw } from 'vue-router';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -5,10 +6,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'main-test',
     component: () => import('@/views/back/welcome/index.vue'),
     meta: {
-      index: 1,
-      title: '',
-      hidden: true,
-      isSystem: true
+      index: 1
     }
   }
 ];

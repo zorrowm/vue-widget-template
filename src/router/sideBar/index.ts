@@ -10,9 +10,9 @@ const mainLayout: RouteRecordRaw = {
   // redirect: '/mapping/layers',
   component: () => import('@/layouts/sideBar/index.vue'),
   meta: {
-    title: '',
-    hidden: true,
-    isSystem: true
+    title: '侧面布局',
+    layoutID:'sideBarLayout',
+    hidden: true
   },
   children: [
     {
@@ -22,8 +22,6 @@ const mainLayout: RouteRecordRaw = {
       component: () => import('@/layouts/sideLine/index.vue'),
       meta: {
         title: '',
-        hidden: true,
-        isSystem: true
       },
       children: mainroutes
     }
