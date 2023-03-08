@@ -13,7 +13,7 @@ const mainLayout = {
       name: 'test',
       meta: {
         title: 'routes.home',
-        icon: 'iconfont icon-Home-Filled'
+        icon: 'icon-Home-Filled'
       },
       component: () => import('@/views/bigScreen/testView.vue') 
     },
@@ -22,7 +22,7 @@ const mainLayout = {
       name: 'test2',
       meta: {
         title: 'routes.home',
-        icon: 'iconfont icon-Home-Filled'
+        icon: 'icon-Home-Filled'
       },
       component: () => import('@/views/bigScreen/test2View.vue') 
     }

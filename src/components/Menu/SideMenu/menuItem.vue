@@ -3,7 +3,6 @@
     <a-sub-menu v-if="menuInfo.children?.length" :key="menuInfo.name" v-bind="$attrs">
       <template v-slot:title>
         <span class="anticon">
-          <!-- <IconFont :icon="menuInfo.meta.icon"></IconFont> -->
           <Icon :icon="menuInfo.meta.icon"></Icon>
         </span>
         <span class="iconClass">{{ menuInfo.meta.title }}</span>
@@ -21,8 +20,7 @@
     </a-sub-menu>
     <a-menu-item v-else :key="menuInfo.name">
       <span class="anticon">
-        <!-- <Icon :icon="menuInfo.meta.icon"></Icon>
-        <IconFont :icon="menuInfo.meta.icon"></IconFont> -->
+        <!-- <Icon :icon="menuInfo.meta.icon"></Icon>-->
         <Icon :icon="menuInfo.meta.icon"></Icon>
       </span>
       <span class="iconClass">{{ menuInfo.meta.title }}</span>
@@ -31,7 +29,6 @@
 </template>
 
 <script lang="ts">
-// import IconFont from '@/components/IconFont/index.vue';
 import { Icon } from "@iconify/vue";
 import { defineComponent } from 'vue';
 import { object } from "vue-types";
@@ -39,7 +36,6 @@ export default defineComponent({
   name: 'menu-item',
   components: {
     Icon,
-    // IconFont,
   },
   props: {
     menuInfo: object()
