@@ -219,8 +219,8 @@ a {
   width: 350px;
   border-radius: 5px;
   height: 400px;
-  background: white;
-  box-shadow: 0px 0px 5px #333333;
+  /* background: white; */
+  /* box-shadow: 0px 0px 5px #333333; */
   top: 50%;
   left: 50%;
   margin-top: -200px;
@@ -232,6 +232,35 @@ a {
   /* Safari 鍜� Chrome */
   -o-transition: all 1s;
   /* Opera */
+  /* 滚动条动画 */
+  --border-size: 3px;
+  --border-angle: 0turn;
+  background-image: conic-gradient(from var(--border-angle), #FFF, #FFF, #FFF), conic-gradient(from var(--border-angle), transparent 20%, #ff0, #f03);
+  background-size: calc(100% - (var(--border-size) * 2)) calc(100% - (var(--border-size) * 2)), cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-animation: bg-spin 5s linear infinite;
+  animation: bg-spin 5s linear infinite;
+}
+@-webkit-keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+.login:hover {
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
 }
 .login-top {
   font-size: 24px;
@@ -317,14 +346,14 @@ a {
 }
 .login-button {
   cursor: pointer;
-  width: 250px;
+  width: 280px;
   text-align: center;
   height: 40px;
   line-height: 40px;
   background-color: dodgerblue;
   border-radius: 5px;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top:20px;
   color: white;
 }
 .login-copyright

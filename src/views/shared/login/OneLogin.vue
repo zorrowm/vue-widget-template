@@ -1,7 +1,5 @@
 <template>
 
-
-
   <div class="container">
     <div class="login-logo">
       <img src="/img/logo.png" alt="" />

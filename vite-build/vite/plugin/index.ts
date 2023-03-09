@@ -1,4 +1,4 @@
-import type { Plugin } from 'vite';
+import { PluginOption } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import legacy from '@vitejs/plugin-legacy';
@@ -11,6 +11,7 @@ import { configHmrPlugin } from './hmr';
 import { configViteUnplugin } from './unplugin';
 // import cesium from 'vite-plugin-cesium';
 import pluginFS from "vite-plugin-fs";
+import mkcert from'vite-plugin-mkcert'
 
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
@@ -21,7 +22,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE
   } = viteEnv;
 
-  const vitePlugins: (Plugin | Plugin[])[] = [
+  const vitePlugins: (PluginOption | PluginOption[])[] = [
     //文件输出
     pluginFS(),
     // have to
@@ -30,7 +31,10 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     vueJsx(),
     //三维
     // cesium(),
-
+    //启用https证书
+    mkcert({
+      source: 'coding',
+    }),
   ];
 
   //unplugin-vue-components isBuild &&

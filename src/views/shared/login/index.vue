@@ -22,7 +22,15 @@
           <div class="login-center-input-text">密码</div>
         </div>
       </div>
-      <div class="login-button" @click="handleSubmit">
+      <div class="login-center clearfix" style="margin-bottom: 5px;">
+        <BasicDragVerify :width="275"
+        @success="handleSuccess"
+        :barStyle="{
+          backgroundColor: '#018ffb'
+        }"
+      />
+      </div>
+      <div class="login-button"  @click="handleSubmit">
         登录
       </div>
     </div>
@@ -45,8 +53,10 @@ login
 import {defineComponent,reactive, ref,onMounted} from 'vue'
 import {useRouter,useRoute} from 'vue-router';
 import doTokenCheck from '@/permission/tokenCheck';
+import {BasicDragVerify, PassingData} from '@/components/Verify/index';
 
 export default defineComponent({
+  components:{BasicDragVerify},
   setup() {
     const formState = reactive({
       username: '',
@@ -77,7 +87,13 @@ export default defineComponent({
 
 
     let canLoginClicked = true;
+    let isPassVerify=false;
     const handleSubmit = async () => {
+      if(!isPassVerify)
+      {
+        Global.Message?.warn('请先人机验证！')
+        return;
+      }
       if (!canLoginClicked) {
         Global.Logger().debug('频繁点击登录******')
         return;
@@ -100,6 +116,7 @@ export default defineComponent({
       const data = await login(logindata).catch(ex => {
         Global.Message?.warn(`登录失败:${ex.message}!`);
         canLoginClicked=true;
+        isPassVerify=false;
       })
       if (data) {
         const userState = userStore();
@@ -158,6 +175,11 @@ export default defineComponent({
       } 
     };
 
+    function handleSuccess(data: PassingData) {
+        isPassVerify=true;
+        const { time } = data;
+        Global.Message?.info(`校验成功,耗时${time}秒`);
+      }
     onMounted(async () => {
       tokenValue = undefined;
       if (toPath) {
@@ -191,7 +213,8 @@ export default defineComponent({
       onblur,
       nameInput,
       pwdInput,
-      copyRightInfo
+      copyRightInfo,
+      handleSuccess
     };
   }
 });
