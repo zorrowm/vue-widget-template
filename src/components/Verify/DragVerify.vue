@@ -4,8 +4,7 @@
   import { on } from '@/utils/domTool';
   import { basicProps } from './props';
   import { getSlot } from '@/utils/tsxHelper';
-  import { CheckOutlined, DoubleRightOutlined } from '@ant-design/icons-vue';
-
+  import {Icon} from '@iconify/vue';
   export default defineComponent({
     name: 'BaseDargVerify',
     props: basicProps,
@@ -256,9 +255,9 @@
             >
               {getSlot(slots, 'actionIcon', isPassing) ||
                 (isPassing ? (
-                  <CheckOutlined />
+                  <Icon icon="ant-design:check-outlined" color="#666"/>
                 ) : (
-                  <DoubleRightOutlined />
+                  <Icon icon="ant-design:double-right-outlined" color="#666"/>
                 ))}
             </div>
           );

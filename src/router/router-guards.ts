@@ -1,3 +1,4 @@
+import { message } from 'ant-design-vue';
 import { Global,logout } from 'xframelib';
 import { getRightRoutes } from '@/permission';
 import { asyncRouteStore, userStore } from '@/store';
@@ -54,9 +55,11 @@ function filterSysRoute(routes:RouteRecordRaw[],routeName: string):boolean
 }
 
 export function createRouterGuards(router: Router) {
+  let toPath:string;
   router.beforeEach((to, from, next) => {
     NProgress.start(); // start progress bar
     let toName = to.name as string;
+    toPath=to.path;
     const userState = userStore();      
     //获取
     const tokenInfo = getLocalToken();
@@ -97,15 +100,21 @@ export function createRouterGuards(router: Router) {
         NProgress.done();
       } else {
         let hasRoute = router.hasRoute(toName);
+
         // 在免登录名单，直接进入
         if (isSystemRoute(toName) || hasRoute) {
+
           if (!systemRight && toName === 'NotFound') {
             //退出登录,当前无法获取到系统权限时
             logout();
             clearRight();
             //跳转到——》登录界面
             next({ path: loginRoutePath, query: { redirect: to.fullPath }, replace: true });
-          } else next();
+          } else 
+          {
+            // Global.Logger().info(isSystemRoute(toName)+':'+toName);
+            next();
+          }
           NProgress.done();
         }
       }
@@ -208,6 +217,8 @@ export function createRouterGuards(router: Router) {
   });
 
   router.onError(error => {
+    Global.Message?.err('加载视图错误:'+error.message);
     Global.Logger().debug(error, '路由错误');
+    router.push('/error/404');
   });
 }

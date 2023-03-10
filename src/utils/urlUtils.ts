@@ -56,3 +56,29 @@ export function OpenServiceTileJson(layerID:string)
   const url=`${Global.Config.ServiceURL.WMTSService}/GetServiceBrowse?layer=${layerID}`;
   window.open(url,'_blank');
 }
+
+/**
+ * 获取vue的URL
+ * @param sysURL 
+ * @returns 
+ */
+export function getVueURL(sysURL:string)
+{
+  let vueURL=sysURL;
+  if(sysURL.endsWith("/"))
+  {
+      if(sysURL.endsWith("/#/"))
+      {
+        return vueURL;
+      }
+      else
+      {
+        vueURL=sysURL + '#/';
+      }
+  }
+  else
+  {
+    vueURL=sysURL + '/#/';
+  }
+ return vueURL;
+}

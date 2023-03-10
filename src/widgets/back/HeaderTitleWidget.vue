@@ -1,36 +1,42 @@
 <template>
-<div class="topHeaderWidget clearfix">
+  <div class="topHeaderWidget clearfix">
     <div class="centerTitle">
-     <!-- <span v-if="iscenterTitle">{{ siteTitle }}</span>  -->
+      <!-- <span v-if="iscenterTitle">{{ siteTitle }}</span>  -->
     </div>
     <div class="fr" style="position:relative;height:100%">
       <div class="right-options">
-     <span> 
-      <Icon v-if="showCollapseIcon" :icon="leftCollapsed ? 'ant-design:menu-unfold-outlined' : 'ant-design:menu-fold-outlined'" @click="toggleCollapse" />
-     </span>
-      <FullScreen :target="fullScreenElem" v-if="showFullScreen" />
-      
-      <a-popover>
-        <template #content v-if="isNOLogin">
-          <ul>
-           <li >
-              <a @click.prevent="showUserModal">
-              <Icon icon="ant-design:info-circle-outlined"/>
-              修改密码 </a>
-            </li>
-            <li>
-              <a @click.prevent="doLogout">
-              <Icon icon="ant-design:logout-outlined" />退出登录
-              </a>
-            </li>
-          </ul>
-        </template>
-        <span v-if="isNOLogin"><Icon icon="ant-design:user-outlined" style="margin-right:5px;" v-if="isNOLogin"/>{{ roleRef }}</span>
-      </a-popover>
-    </div>
-    </div>
-</div>
+        <span>
+          <Icon v-if="showCollapseIcon"
+            :icon="leftCollapsed ? 'ant-design:menu-unfold-outlined' : 'ant-design:menu-fold-outlined'"
+            @click="toggleCollapse" />
+        </span>
+        <FullScreen :target="fullScreenElem" v-if="showFullScreen" />
 
+        <a-popover>
+          <template #content v-if="isNOLogin">
+            <ul>
+              <li class="outlist">
+                <a @click.prevent="showUserModal">
+                  <Icon icon="ant-design:info-circle-outlined" />
+                  <span> 修改密码</span>
+                </a>
+
+              </li>
+              <li class="outlist">
+                <a @click.prevent="doLogout">
+                  <Icon icon="ant-design:logout-outlined" />
+                  <span>退出登录</span>
+                </a>
+              </li>
+            </ul>
+          </template>
+          <span v-if="isNOLogin">
+            <Icon icon="ant-design:user-outlined" style="margin-right:5px;" v-if="isNOLogin" />{{ roleRef }}
+          </span>
+        </a-popover>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -41,23 +47,23 @@ import { doLoadModal } from '@/utils/WidgetsTool';
 import { Icon } from '@iconify/vue';
 import { Modal } from 'ant-design-vue';
 import { storeToRefs } from 'pinia';
-import { computed, defineComponent, reactive, ref, toRefs } from 'vue';
+import { createVNode, computed, defineComponent, reactive, ref, toRefs } from 'vue';
 import { useRoute } from 'vue-router';
 import { Global } from "xframelib";
 export default defineComponent({
   name: "HeaderTitleWidget",
-   components: { Icon, FullScreen},
+  components: { Icon, FullScreen },
   setup() {
     const siteTitle = ref(Global.Config.UI?.SiteTitle);
-   const appState=appStore();
+    const appState = appStore();
     const userState = userStore();
-    const {leftCollapsed}=storeToRefs(appState);
+    const { leftCollapsed } = storeToRefs(appState);
     //居中显示标题
-    const iscenterTitle=ref(appState.headerSetting.centerTitle);
+    const iscenterTitle = ref(appState.headerSetting.centerTitle);
     //全屏图标
-    const showFullScreen=ref(appState.headerSetting.showFullScreen)
-    const showCollapseIcon=ref(appState.headerSetting.showCollapseIcon)
-    
+    const showFullScreen = ref(appState.headerSetting.showFullScreen)
+    const showCollapseIcon = ref(appState.headerSetting.showCollapseIcon)
+
     function toggleCollapse() {
       appState.toggleCollapse();
     }
@@ -69,7 +75,7 @@ export default defineComponent({
       //头部高度
       headerHeight: LayoutTool.getHeaderHeight()
     });
-   const fullScreenElem = ref(window.document.documentElement);
+    const fullScreenElem = ref(window.document.documentElement);
     const route = useRoute();
     // 退出登录
     const doLogout = () => {
@@ -89,20 +95,20 @@ export default defineComponent({
     const isNOLogin = computed(() => !Global.Config.UI?.IsNoLogin);
     //修改密码框
     function showUserModal() {
-      const rowData=undefined;
-      const modalData={
-            modalID:'changeMyPWD',
-            extraData:{
-                title: '修改密码', 
-            },
-            width:500,
-            rowData
-        };
+      const rowData = undefined;
+      const modalData = {
+        modalID: 'changeMyPWD',
+        extraData: {
+          title: '修改密码',
+        },
+        width: 500,
+        rowData
+      };
       doLoadModal(modalData);
     }
 
-   return {
-     ...toRefs(state),
+    return {
+      ...toRefs(state),
       doLogout,
       route,
       isNOLogin,
@@ -121,32 +127,63 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.topHeaderWidget
-{
-  position:relative;
-  width:100%;
+.topHeaderWidget {
+  position: relative;
+  width: 100%;
   height: var(--header-top-height);
   background-color: var(--header-bg-color);
 }
 
-  .centerTitle
-  {
-    font-size: 28px;
-    font-weight: 700;
-    width:100%;
-    line-height: var(--header-top-height);
-    text-align: center;
-    color: var(--header-title-color);
-    // background-color: #f00;
-  }
+.centerTitle {
+  font-size: 28px;
+  font-weight: 700;
+  width: 100%;
+  line-height: var(--header-top-height);
+  text-align: center;
+  color: var(--header-title-color);
+  // background-color: #f00;
+}
 
-  .right-options {
+.right-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+  height: var(--header-top-height);
+  // line-height: var(--header-top-height);
+}
+
+:deep(.ant-popover-inner-content)
+{
+  padding: 5px 5px !important;
+}
+.outlist {
+  position: relative;
+  line-height: 25px;
+  margin-top: 5px;
+  a {
     display: flex;
+    width: 85px;
     align-items: center;
-    justify-content:space-between;
-    width: 200px;
-    height:var(--header-top-height);
-    // line-height: var(--header-top-height);
-
+    justify-content: space-evenly;
+    vertical-align: middle;
+    &:hover:before,
+    &:hover:after {
+      width: 100%;
+      transition: 800ms ease all
+    }
   }
+
+  a:before,
+  a:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    width: 0;
+    background: #028da9;
+    transition: 400ms ease all
+  }
+}
 </style>

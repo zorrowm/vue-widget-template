@@ -22,22 +22,23 @@
       <span>
         {{ username }}
       </span>
-      <poweroff-outlined title="退出？" @click.prevent="doLogout" />
+      <span title="退出？" @click.prevent="doLogout" >
+        <Icon icon="ant-design:poweroff-outlined"/>
+      </span>
     </div>
   </div>
 </template>
 <script lang="ts">
   import { defineComponent, ref, createVNode } from 'vue';
   import { Modal } from 'ant-design-vue';
-  import { QuestionCircleOutlined, PoweroffOutlined } from '@ant-design/icons-vue';
   import { Global, logout } from 'xframelib';
   import FullScreen from '@/components/FullScreen.vue';
+  import {Icon} from '@iconify/vue'
 
   export default defineComponent({
     name: 'HeaderTitleWidget',
     components: {
-      FullScreen,
-      PoweroffOutlined
+      FullScreen
     },
     setup() {
       const siteTitle = ref(Global.Config.UI?.SiteTitle);
@@ -47,7 +48,6 @@
       const doLogout = () => {
         Modal.confirm({
           title: '您确定要退出登录吗？',
-          icon: createVNode(QuestionCircleOutlined),
           onOk: () => {
             logout();
             Global.Message?.msg('成功退出登录');

@@ -10,11 +10,29 @@ const routes: Array<RouteRecordRaw> = [
     name: 'login',
     meta: {
       title: '系统登录',
-      hidden: true,
       isSystem: true
     },
     component: () => import('@/views/shared/login/index.vue') //'@/views/shared/login/index.vue'
   },
+  {
+    path: '/onelogin',
+    name: 'onelogin',
+    meta: {
+      title: '统一登录',
+      isSystem: true
+    },
+    component: () => import('@/views/shared/onelogin/index.vue') 
+  },
+  {
+    path: '/onelogin-portal',
+    name: 'onelogin-portal',
+    meta: {
+      title: '统一验证导航页',
+      isSystem: true
+    },
+    component: () => import('@/views/shared/onelogin/OneLoginPortal.vue') 
+  },
+  
 ];
 
 export default routes;

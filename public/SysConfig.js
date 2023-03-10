@@ -20,7 +20,7 @@ const SysConfig = {
   //#region ********后台服务地址配置
   ServiceURL: {
     /**
-     * 用户登录（统一用户登录）
+     * 用户登录（统一用户登录）（不能带"/"）
      * http://192.168.1.12:83
      */
      LoginAuthURL: "https://gis-auth.digsur.com",
@@ -89,6 +89,7 @@ const SysConfig = {
 
   //#region ******** API服务路径
   APIPath: {
+    SignalR:'/chathub',
   }
   //#endregion
 };

@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="login-center clearfix" style="margin-bottom: 5px;">
-        <BasicDragVerify :width="275"
+        <BasicDragVerify :width="270"
         @success="handleSuccess"
         :barStyle="{
           backgroundColor: '#018ffb'
@@ -33,6 +33,11 @@
       <div class="login-button"  @click="handleSubmit">
         登录
       </div>
+      <div class="login-bottom-line">
+      <span>忘记密码</span> 
+      <a-divider type="vertical" />
+      <span>注册新账号</span>
+    </div>
     </div>
     <div class="login-copyright">{{ copyRightInfo }}</div>
   </div>

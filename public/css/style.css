@@ -70,3 +70,8 @@ html {
 .backContainer {
   pointer-events: none !important;
 }
+/* 用于弹框内容边界控制 */
+.ant-popover-inner-content
+{
+  padding: 5px 12px !important;
+}

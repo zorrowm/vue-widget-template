@@ -219,8 +219,8 @@ a {
   width: 350px;
   border-radius: 5px;
   height: 400px;
-  /* background: white; */
-  /* box-shadow: 0px 0px 5px #333333; */
+
+  box-shadow: 0px 0px 10px #333333;
   top: 50%;
   left: 50%;
   margin-top: -200px;
@@ -235,7 +235,8 @@ a {
   /* 滚动条动画 */
   --border-size: 3px;
   --border-angle: 0turn;
-  background-image: conic-gradient(from var(--border-angle), #FFF, #FFF, #FFF), conic-gradient(from var(--border-angle), transparent 20%, #ff0, #f03);
+  background-image: conic-gradient(from var(--border-angle), #fff, #fff,#fff ), conic-gradient(from var(--border-angle), transparent 20%, #e76957, #FF2222);
+  background-color: #fff; 
   background-size: calc(100% - (var(--border-size) * 2)) calc(100% - (var(--border-size) * 2)), cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -270,11 +271,19 @@ a {
   color: #333333;
   margin-bottom: 50px;
 }
+.login-top-center {
+  font-size: 24px;
+  width: 100%;
+  margin: 40px auto;
+  text-align: center;
+  box-sizing: border-box;
+  color: #333333;
+}
 .login-center {
   width: 100%;
   box-sizing: border-box;
   padding: 0 40px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .login-center-img {
   width: 20px;
@@ -346,15 +355,26 @@ a {
 }
 .login-button {
   cursor: pointer;
-  width: 280px;
+  width: 270px;
   text-align: center;
   height: 40px;
   line-height: 40px;
-  background-color: dodgerblue;
+  background-color: #3b78dd;
   border-radius: 5px;
   margin: 0 auto;
   margin-top:20px;
   color: white;
+}
+.login-bottom-line
+{
+  margin-top:10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #585e6d;
+  font-size: 14px;
+  line-height: 20px;
 }
 .login-copyright
 {
