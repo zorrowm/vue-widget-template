@@ -7,7 +7,7 @@
     @cancel="handleCancel"
     :footer="footerRef"
   >
-    <component v-bind:is="content" :extra="extra" :data="dataRef"></component>
+    <component v-bind:is="content" :extra="extra" :data="dataRef" v-if="visibleRef"></component>
   </a-modal>
 </template>
 <script lang="ts">
