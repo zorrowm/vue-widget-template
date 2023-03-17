@@ -1,11 +1,9 @@
-import { appStore } from '@/store';
-import { storeToRefs } from 'pinia';
 import {computed} from 'vue';
-const appState=appStore();
-const {layoutContentHeight,layoutContentWidth}=storeToRefs(appState);
+import LayoutTool from './layoutTool';
+
 const scrollRef=computed(()=>{
-    const width=layoutContentWidth.value-30;
-    const height=layoutContentHeight.value-125;
+    const width=LayoutTool.getContentWidth(20);
+    const height=LayoutTool.getContentHeight(70);
     return { x: width, y: height };
    });
-export {scrollRef,layoutContentHeight};
+export {scrollRef};

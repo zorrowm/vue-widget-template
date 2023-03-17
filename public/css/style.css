@@ -39,7 +39,11 @@ html {
 /* ant-design弹框样式,必须大于10000 */
 .ant-modal-mask,
 .ant-modal-wrap {
-  z-index: 10001 !important;
+  z-index: 100 !important;
+}
+.ant-modal
+{
+  top:20px !important
 }
 
 /* 引入字体文件 */
