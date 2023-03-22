@@ -8,6 +8,7 @@ import 'xframelib/dist/index.css';
 import { getSystemPKG, getSystemID } from '@/utils/sysTool';
 import { createPinia } from 'pinia';
 import { message } from 'ant-design-vue';
+import {Icon} from '@iconify/vue';
 //dev阶段打开，build注销
 import 'ant-design-vue/dist/antd.css';
 
@@ -36,4 +37,7 @@ app.use(pinia);
 //定义v-drag命令
 setupGlobDirectives(app);
 setupRouter(app);
+//注册全局组件
+app.component('Icon',Icon);
+
 app.mount('#app');
