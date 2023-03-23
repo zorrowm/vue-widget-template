@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="login-center clearfix" style="margin-bottom: 5px;">
-        <BasicDragVerify :width="270"
+        <BasicDragVerify ref="elDragRef" :width="270"
         @success="handleSuccess"
         :barStyle="{
           backgroundColor: '#018ffb'
@@ -58,7 +58,7 @@ login
 import {defineComponent,reactive, ref,onMounted} from 'vue'
 import {useRouter,useRoute} from 'vue-router';
 import doTokenCheck from '@/permission/tokenCheck';
-import {BasicDragVerify, PassingData} from '@/components/Verify/index';
+import {BasicDragVerify, PassingData,DragVerifyActionType} from '@/components/Verify/index';
 
 export default defineComponent({
   components:{BasicDragVerify},
@@ -90,7 +90,7 @@ export default defineComponent({
       return;
     }
 
-
+    const elDragRef=ref<Nullable<DragVerifyActionType>>(null);
     let canLoginClicked = true;
     let isPassVerify=false;
     const handleSubmit = async () => {
@@ -121,7 +121,11 @@ export default defineComponent({
       const data = await login(logindata).catch(ex => {
         Global.Message?.warn(`登录失败:${ex.message}!`);
         canLoginClicked=true;
-        isPassVerify=false;
+        if(elDragRef.value)
+        {
+          isPassVerify=false;
+          elDragRef.value.resume();
+        }
       })
       if (data) {
         const userState = userStore();
@@ -219,7 +223,8 @@ export default defineComponent({
       nameInput,
       pwdInput,
       copyRightInfo,
-      handleSuccess
+      handleSuccess,
+      elDragRef
     };
   }
 });
