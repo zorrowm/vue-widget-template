@@ -253,16 +253,6 @@ export default defineComponent({
         if (res != undefined) {
           tableState.tableData = res.arrayList;
           tableState.totalCount = res.totalCount;
-          for (let i = 0; i < tableState.tableData.length; i++) {
-            tableState.tableData[i].level =
-              tableState.tableData[i].minlevel + '~' + tableState.tableData[i].maxlevel;
-            if (tableState.tableData[i].precache === 0) {
-              tableState.tableData[i].cachestatus = '无';
-            } else {
-              tableState.tableData[i].cachestatus =
-                '缓存级别:' + tableState.tableData[i].precachelevel;
-            }
-          }
         } else {
           tableState.tableData = [];
           tableState.totalCount = 0;

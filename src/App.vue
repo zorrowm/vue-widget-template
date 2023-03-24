@@ -19,6 +19,8 @@
   import widgetConfig from '@/settings/widgetSetting';
   import { getSystemPKG } from '@/utils/sysTool';
   import fs from 'vite-plugin-fs/browser';
+  import {OnEventHandler,OffEventHandler} from '@/events';
+  import {SysEvents} from 'xframelib';
 
   export default defineComponent({
     name: 'App',
@@ -58,12 +60,24 @@
 
       }
 
+      function requestErrorHandler(errData)
+      {
+        if(!errData.isExceptionInfo)
+        {
+          const errInfo=`${errData.message}\n$${errData.result}`;
+          Global.Message?.warn(errInfo);
+        }
+        Global.Logger().warn(errData,'请求错误')
+      }
       onMounted(() => {
         onLockListener(); //长时间不操作退出
+        //统一捕捉处理Axios请求异常
+        OnEventHandler(SysEvents.AxiosRequestErrorEvent,requestErrorHandler);
       });
 
       onUnmounted(() => {
         unLockListener();
+        OffEventHandler(SysEvents.AxiosRequestErrorEvent,requestErrorHandler)
       });
       return {
         zh_CN
