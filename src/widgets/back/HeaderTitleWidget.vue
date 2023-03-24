@@ -148,14 +148,15 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 200px;
+  width: 140px;
   height: var(--header-top-height);
+  padding-right:20px;
   // line-height: var(--header-top-height);
 }
 
-:deep(.ant-popover-inner-content)
+:deep(.ant-popover-inner)
 {
-  padding: 5px 5px !important;
+  min-width:120px;
 }
 .outlist {
   position: relative;

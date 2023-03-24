@@ -57,13 +57,13 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped lang="scss">
 .operationIcon {
   cursor: pointer;
   color: #1890ff !important;
   margin-left: 5px;
 }
-.ant-popover-inner
+:deep(.ant-popover-inner)
 {
   min-width:140px;
 }
