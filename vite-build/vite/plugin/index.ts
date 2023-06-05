@@ -11,7 +11,7 @@ import { configHmrPlugin } from './hmr';
 import { configViteUnplugin } from './unplugin';
 // import cesium from 'vite-plugin-cesium';
 import pluginFS from "vite-plugin-fs";
-import mkcert from'vite-plugin-mkcert'
+// import mkcert from'vite-plugin-mkcert'
 
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
@@ -32,9 +32,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     //三维
     // cesium(),
     //启用https证书
-    mkcert({
-      source: 'coding',
-    }),
+    // mkcert({
+    //   source: 'coding',
+    // }),
   ];
 
   //unplugin-vue-components isBuild &&
