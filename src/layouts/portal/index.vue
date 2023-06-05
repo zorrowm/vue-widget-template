@@ -1,10 +1,14 @@
 <template>
-  <div class="container">
-    <LayoutContainer :widgetConfig="configRef" :layoutID="layoutIDRef" @containerLoaded="loadedHandler" />
-  </div>
+  <ScaleContainer>
+    <!-- <div> -->
+      <LayoutContainer :widgetConfig="configRef" :layoutID="layoutIDRef" @containerLoaded="loadedHandler" />
+    <!-- </div> -->
+    
+  </ScaleContainer>
 </template>
 
 <script lang="ts">
+import ScaleContainer from '@/components/ScaleContainer/index.vue';
 import widgetCofig from '@/settings/widgetSetting/index';
 import { defineComponent, onMounted,ref } from "vue";
 import { Global,LayoutContainer,H5Tool } from 'xframelib';
@@ -12,7 +16,8 @@ import { appStore } from '@/store';
 export default defineComponent({
   name: 'portalLayout',
   components: {
-    LayoutContainer
+    LayoutContainer,
+    ScaleContainer
   },
   setup(props, { attrs, slots, emit }) {
     const configRef = ref(widgetCofig);

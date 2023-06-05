@@ -4,7 +4,7 @@
     <div v-media="'text-h2.gt.lg text-h4.md text-h6.sm test.sm'">
       时空影像云平台
     </div>
-    <XWidgetWindow ref="xwidgetWindowRef" title="图层管理" :pid="widgetID" @loaded="onLoaded" @close="onClosed">
+   <XWidgetWindow ref="xwidgetWindowRef" title="图层管理" :pid="widgetID" @loaded="onLoaded" @close="onClosed">
    <span style="font-size: 20px;">图层管理树</span>
   </XWidgetWindow>
   </div>
