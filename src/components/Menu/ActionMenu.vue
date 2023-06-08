@@ -63,8 +63,4 @@ export default defineComponent({
   color: #1890ff !important;
   margin-left: 5px;
 }
-:deep(.ant-popover-inner)
-{
-  min-width:140px;
-}
 </style>

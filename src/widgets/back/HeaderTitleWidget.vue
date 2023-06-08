@@ -3,7 +3,7 @@
     <div class="centerTitle">
       <!-- <span v-if="iscenterTitle">{{ siteTitle }}</span>  -->
     </div>
-    <div class="fr" style="position:relative;height:100%">
+    <div class="fr">
       <div class="right-options">
         <span>
           <Icon v-if="showCollapseIcon"
@@ -148,16 +148,12 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 140px;
+  width: 220px;
   height: var(--header-top-height);
   padding-right:20px;
   // line-height: var(--header-top-height);
 }
 
-:deep(.ant-popover-inner)
-{
-  min-width:120px;
-}
 .outlist {
   position: relative;
   line-height: 25px;

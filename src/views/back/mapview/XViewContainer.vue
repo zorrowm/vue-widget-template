@@ -29,7 +29,7 @@
 <script lang="ts">
 import { Icon } from '@iconify/vue';
 import { fromLonLat } from 'ol/proj';
-// import { storeToRefs } from 'pinia';
+import { storeToRefs } from 'pinia';
 import {
 computed,
 defineComponent,
@@ -43,7 +43,7 @@ import {
 DrawToolBar, mapMenuState, MeasureToolBar, MenuToolBar, SwipeToolBar, WMTSTool, XMap, XMapView,PrjGridTool,
 DrawFeatureTool} from 'xgis-ol';
 import {GeoJSON} from 'ol/format';
-
+import {appStore} from '@/store';
 import PlotOL,{PlotTypes} from 'xgis-plot';
 import 'xgis-ol/dist/index.css';
 
@@ -59,10 +59,10 @@ export default defineComponent({
         const tdtkeysRef=ref<string[]>(Global.Config.MapKeys?.TDTKey);
         //当前图层的信息
         // const imgLayerInfoState=imgLayerInfoStore();
-        // const appState = appStore();
-        // const { layoutContentHeight, layoutContentWidth } = storeToRefs(appState);
-        const layoutContentHeight=ref(document.body.clientHeight);
-        const layoutContentWidth=ref(document.body.clientWidth);
+        const appState = appStore();
+        const { layoutContentHeight, layoutContentWidth } = storeToRefs(appState);
+        // const layoutContentHeight=ref(document.body.clientHeight);
+        // const layoutContentWidth=ref(document.body.clientWidth);
         const currentRoute = useRoute();
         const viewProjectionRef=ref<string|any>();
         const  prjOptions = [

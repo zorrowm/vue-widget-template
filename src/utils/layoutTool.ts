@@ -1,5 +1,12 @@
 import { appStore } from '@/store';
+import {ref} from 'vue';
+import { H5Tool } from 'xframelib';
 
+
+const fullHeightRef=ref(document.body.clientHeight)
+H5Tool.windowResizeHandler(()=>{
+  fullHeightRef.value=document.body.clientHeight;
+});
 /**
  * 用于布局计算的辅助工具
  */
@@ -69,4 +76,14 @@ export default class LayoutTool {
       isShow = LayoutTool.appStoreState.showFooter;
     return isShow;
   }
+
+    /**
+   * 获取全部高度，右侧面板内容
+   * @param marginDetHeight 
+   * @returns 
+   */
+    static getFullContentHeight(marginDetHeight: number = 0): number {
+      const contentHeight = fullHeightRef.value-marginDetHeight;
+      return contentHeight;
+    }
 }

@@ -13,7 +13,6 @@ defineComponent, onMounted, ref
 } from 'vue';
 // import serviceDataPanel from './serviceDataPanel/index.vue';
 import XViewContainerVue from './XViewContainer.vue';
-// import GuestImageTopBar from './GuestImageTopBar.vue';
 import { useRoute } from 'vue-router';
 
 export default defineComponent({

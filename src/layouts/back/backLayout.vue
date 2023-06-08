@@ -1,5 +1,5 @@
 <template>
-  <LayoutContainer id="backLayoutContainer" class="layoutContainerCSSVar" :widgetConfig="configRef"
+  <LayoutContainer id="backLayoutContainer"  :widgetConfig="configRef"
     :layoutID="layoutIDRef" @containerLoaded="loadedHandler" />
 </template>
 
@@ -79,8 +79,8 @@ export default defineComponent({
   top: var(--header-top-height);
   left: var(--leftSideWidth);
   background-color: var(--main-bg-color);
+  height: calc(100vh - var(--header-top-height) - 10px);
   width:calc(100% - var(--leftSideWidth));
-  right: 0px;
   pointer-events: auto;
   overflow-y: auto;
 }
