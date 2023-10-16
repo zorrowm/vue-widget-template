@@ -7,6 +7,7 @@ import functionSettings from '@/settings/functionSetting';
 import widgetMenuSetting from '@/settings/widgetMenuSetting';
 import widgetConfigSetting from '@/settings/widgetSetting';
 import { IWidgetMenu } from '@/models/IWidgetMenu';
+import { getRouteURL } from '@/utils/sysTool';
 
 let functionList;
 
@@ -43,6 +44,17 @@ export function hasFunction(funcID: string): boolean {
  */
 export function getRightRoutes(): Array<RouteRecordRaw> | undefined {
   const rightRoutes = Global.Config.UI.IsNoLogin?bussinessRoutes:getRoutes(bussinessRoutes,getDefaultMaxRoleLevel());
+  if(!Global.Config.UI.IsNoLogin&&!Global.CorrectRoute)
+  {//解决redirect还保留默认值的问题
+    rightRoutes?.forEach(it=>{
+      if(it.children&&it.children.length>0)
+      {
+        it.redirect=getRouteURL(it.children[0].path,it.path);
+      }
+    })
+    //修正Route
+    Global.CorrectRoute=true;
+  }
   return rightRoutes;
 }
 

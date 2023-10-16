@@ -8,6 +8,7 @@
     "clean": "rimraf components.d.ts && rimraf package-lock.json && rimraf node_modules/.vite/deps/*"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-style-spec": "^13.28.0",
     "@microsoft/signalr": "^7.0.3",
     "ant-design-vue": "^3.2.10",
     "dayjs": "^1.11.7",
