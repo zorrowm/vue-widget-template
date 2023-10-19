@@ -49,7 +49,7 @@ html {
 /* 引入字体文件 */
 @font-face {
   font-family: "PangMenZhengDao";
-  src: url("./PangMenZhengDao.ttf");
+  src: url("./PangMenZhengDao.woff2");
 }
 /* iconify Icon图标样式 */
 .iconify {

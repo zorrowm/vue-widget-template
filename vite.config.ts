@@ -94,6 +94,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
                 "xgis-ol",
                 "vue-router",
                 "@iconify/vue",
+                "@vue"//WM:必须要有，否则分包导出运行时报错
               ]; //, 'svelte-jsoneditor', 'mapbox-gl'
               const c = expansions.find((exp) =>
                 id.includes(`/node_modules/${exp}`)
