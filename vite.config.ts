@@ -62,6 +62,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       // Load proxy configuration from .env
       // proxy: createProxy(VITE_PROXY)
     },
+    //https://vitejs.cn/vite3-cn/config/preview-options.html#preview-port
+    preview: {
+      port: 5173
+    },
     build: {
       target: "esnext",
       outDir: OUTPUT_DIR,
