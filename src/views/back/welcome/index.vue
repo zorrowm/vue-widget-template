@@ -14,6 +14,10 @@
         </a-descriptions-item>
       </a-descriptions>
     </div>
+    <a-input v-model:value="textMessage" placeholder="Basic usage" />
+    <a-button type="primary" @click="doSend">发送消息</a-button>
+
+    <a-textarea v-model:value="receiveContent" placeholder="" allow-clear />
   </div>
 </template>
 
@@ -22,6 +26,10 @@ import BrowserType from "@/utils/browser-type";
 import { Badge, Descriptions } from "ant-design-vue";
 import { defineComponent, ref } from "vue";
 import {Icon} from '@iconify/vue'
+import { Client, Message } from '@stomp/stompjs';
+import { onUnmounted } from "vue";
+import { onMounted } from "vue";
+
 export default defineComponent({
   name: "Welcome",
   components: {
@@ -32,6 +40,55 @@ export default defineComponent({
   setup() {
     // 获取浏览器信息
     const browserInfo = ref(BrowserType("zh-cn"));
+    const textMessage=ref('');
+    const receiveContent=ref('');
+
+  //是否连接成功
+  let isConnected=false;
+  const client = new Client({
+  brokerURL: 'ws://192.168.1.121:61614',
+  // connectHeaders: {
+  //   login: 'user',
+  //   passcode: 'password',
+  // },
+  debug: function (str) {
+    console.log(str);
+  },
+  reconnectDelay: 5000,
+  heartbeatIncoming: 4000,
+  heartbeatOutgoing: 4000,
+});
+
+client.onConnect = function (frame) {
+  isConnected=true;
+  // Do something, all subscribes must be done is this callback
+  // This is needed because this will be executed after a (re)connect
+  //监听
+  client.subscribe('/topic/test02', message =>
+      {
+        console.log(`Received: ${message.body}`)
+            receiveContent.value+=`\n${message.body}`
+      });
+};
+
+client.onStompError = function (frame) {
+  isConnected=false;
+  // Will be invoked in case of error encountered at Broker
+  // Bad login/passcode typically will cause an error
+  // Complaint brokers will set `message` header with a brief message. Body may contain details.
+  // Compliant brokers will terminate the connection after any error
+  console.log('Broker reported error: ' + frame.headers['message']);
+  console.log('Additional details: ' + frame.body);
+};
+
+client.activate();
+onMounted(()=>{
+
+})
+
+onUnmounted(()=>{
+  client.deactivate();
+})
 
     // watchEffect(() => {
     //   Object.assign(browserInfo.value, {
@@ -49,9 +106,19 @@ export default defineComponent({
     // })
 
     // Global.Logger().debug(performanceMonitor.getPerformanceData(), 'performanceMonitor')
-
+    
+    function doSend()
+    {
+      if(isConnected)
+      {
+        client.publish({ destination: '/topic/test01', body: textMessage.value});
+      }
+    }
     return {
       browserInfo,
+      textMessage,
+      receiveContent,
+      doSend
     };
   },
 });

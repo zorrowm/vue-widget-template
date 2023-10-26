@@ -4,7 +4,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/main/test',
     name: 'main-test',
-    component: () => import('@/views/back/welcome/index.vue'),
+    component: () => import('@/views/main/index.vue'),
     meta: {
       index: 1
     }

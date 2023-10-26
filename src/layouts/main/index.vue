@@ -41,6 +41,15 @@ export default defineComponent({
   overflow: hidden;
 }
 
+.leftContainer {
+  overflow: hidden;
+  pointer-events: none;
+}
+.mainContainer
+{
+  pointer-events: auto;
+}
+
 .centerdiv {
   overflow: hidden;
 }

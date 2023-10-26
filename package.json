@@ -10,6 +10,7 @@
   "dependencies": {
     "@mapbox/mapbox-gl-style-spec": "^13.28.0",
     "@microsoft/signalr": "^7.0.3",
+    "@stomp/stompjs": "^7.0.0",
     "ant-design-vue": "^3.2.10",
     "dayjs": "^1.11.7",
     "echarts": "^5.4.1",
