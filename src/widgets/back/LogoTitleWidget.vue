@@ -9,13 +9,12 @@
 <script lang="ts">
 import FullScreen from '@/components/FullScreen.vue';
 import { appStore } from '@/store';
-import { Icon } from '@iconify/vue';
 import { storeToRefs } from 'pinia';
 import { defineComponent, ref,computed } from 'vue';
 import { Global } from "xframelib";
 export default defineComponent({
   name: "LogoTitleWidget",
-   components: { Icon, FullScreen},
+   components: { FullScreen},
   props: {
   },
   setup() {

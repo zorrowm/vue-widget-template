@@ -4,9 +4,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import legacy from '@vitejs/plugin-legacy';
 import visualizer from 'rollup-plugin-visualizer';
 import { configCompressPlugin } from './compress';
-import { configStyleImportPlugin } from './styleImport';
 import { configVisualizerConfig } from './visualizer';
-// import { configThemePlugin } from './theme';
 import { configHmrPlugin } from './hmr';
 import { configViteUnplugin } from './unplugin';
 // import cesium from 'vite-plugin-cesium';
@@ -37,8 +35,8 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     // }),
   ];
 
-  //unplugin-vue-components isBuild &&
-   vitePlugins.push(configViteUnplugin(isBuild));
+  //unplugin-vue-components
+   vitePlugins.push(configViteUnplugin());
   //unplugin-auto-import
   // vitePlugins.push(pluginAutoImport);
 
@@ -59,9 +57,6 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   if (isBuild) {
     // rollup-plugin-visualizer
     vitePlugins.push(configVisualizerConfig());
-
-    // vite-plugin-style-import
-    vitePlugins.push(configStyleImportPlugin());
 
     // rollup-plugin-gzip
     vitePlugins.push(

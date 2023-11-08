@@ -46,7 +46,6 @@ import FullScreen from '@/components/FullScreen.vue';
 import { appStore, userStore } from '@/store';
 import LayoutTool from '@/utils/layoutTool';
 import { doLoadModal } from '@/utils/WidgetsTool';
-import { Icon } from '@iconify/vue';
 import { Modal } from 'ant-design-vue';
 import { storeToRefs } from 'pinia';
 import { computed, defineComponent, reactive, ref, toRefs,watch } from 'vue';
@@ -54,7 +53,7 @@ import { useRoute,useRouter } from 'vue-router';
 import { Global } from "xframelib";
 export default defineComponent({
   name: "HeaderTitleWidget",
-  components: { Icon, FullScreen },
+  components: { FullScreen },
   setup() {
     const siteTitle = ref(Global.Config.UI?.SiteTitle);
     const appState = appStore();

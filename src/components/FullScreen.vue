@@ -9,12 +9,11 @@
 <script lang="ts">
   import { Tooltip } from 'ant-design-vue';
   import { object } from "vue-types";
-  import { Icon } from '@iconify/vue';
   import { defineComponent,computed,ref } from 'vue';
   import { H5Tool } from 'xframelib';
   export default defineComponent({
     name: 'FullScreen', //FullscreenOutlined
-    components: { Icon, Tooltip },
+    components: {Tooltip },
     props: {
       target: object<any | Element>()
     },

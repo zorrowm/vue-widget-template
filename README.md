@@ -3,6 +3,14 @@
 全面基于Widget思想的开发模板
 积累记录
 
+2023.11.08
+备份ant-design-vue 3.x版本为分支v3;
+主版本升级js库版本，ant-design-vue版本为4.x,并对应迁移修改。
+参考：
+ https://next.antdv.com/docs/vue/introduce-cn
+ https://next.antdv.com/docs/vue/migration-v4-cn
+
+
 2023.03.24
 APP.VUE增加统一Axios请求异常捕捉处理
 

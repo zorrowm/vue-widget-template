@@ -37,7 +37,6 @@
 
 <script setup lang="ts">
 import sidemenu from "./menu.vue";
-import {Icon} from "@iconify/vue";
 </script>
 
 <style lang="scss" scoped>

@@ -11,11 +11,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { Icon } from '@iconify/vue';
 
 export default defineComponent({
   name: 'menu-item',
-  components: { Icon },
   props: {
     menuInfo: {
       type: Object,

@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import { Global } from 'xframelib';
 import { createRouterGuards } from './router-guards';
-import 'nprogress/css/nprogress.css'; // 进度条样式
+// import 'nprogress/nprogress.css'; // 进度条样式
 import common from '@/router/system';
 import { App } from 'vue';
 

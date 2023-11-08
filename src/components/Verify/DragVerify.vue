@@ -4,7 +4,6 @@
   import { on } from '@/utils/domTool';
   import { basicProps } from './props';
   import { getSlot } from '@/utils/tsxHelper';
-  import {Icon} from '@iconify/vue';
   export default defineComponent({
     name: 'BaseDargVerify',
     props: basicProps,

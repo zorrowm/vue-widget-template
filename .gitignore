@@ -7,3 +7,4 @@ dist-ssr
 components.d.ts
 stats.html
 package-lock.json
+pnpm-lock.yaml

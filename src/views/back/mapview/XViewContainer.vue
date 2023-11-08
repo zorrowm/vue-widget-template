@@ -27,31 +27,31 @@
 </template>
 
 <script lang="ts">
-import { Icon } from '@iconify/vue';
-import { fromLonLat } from 'ol/proj';
+import { appStore } from '@/store';
 import { storeToRefs } from 'pinia';
 import {
 computed,
 defineComponent,
 onBeforeUnmount,
-onMounted, ref,
-onBeforeMount
+onMounted, ref
 } from 'vue';
 import { useRoute } from 'vue-router';
 import { Global, H5Tool } from 'xframelib';
 import {
-DrawToolBar, mapMenuState, MeasureToolBar, MenuToolBar, SwipeToolBar, WMTSTool, XMap, XMapView,PrjGridTool,
-DrawFeatureTool} from 'xgis-ol';
-import {GeoJSON} from 'ol/format';
-import {appStore} from '@/store';
-import PlotOL,{PlotTypes} from 'xgis-plot';
+DrawFeatureTool,
+DrawToolBar,
+MeasureToolBar, MenuToolBar,
+PrjGridTool,
+SwipeToolBar, WMTSTool, XMap, XMapView,
+mapMenuState
+} from 'xgis-ol';
 import 'xgis-ol/dist/index.css';
+import PlotOL, { PlotTypes } from 'xgis-plot';
 
 export default defineComponent({
     name: 'xViewContainer',
     props: {},
     components: {
-        Icon,
         DrawToolBar, MeasureToolBar, MenuToolBar, SwipeToolBar,
         XMapView
     },

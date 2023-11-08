@@ -9,9 +9,6 @@ import { getSystemPKG, getSystemID } from '@/utils/sysTool';
 import { createPinia } from 'pinia';
 import { message } from 'ant-design-vue';
 import {Icon} from '@iconify/vue';
-//dev阶段打开，build注销
-import 'ant-design-vue/dist/antd.css';
-
 
 if(window.global===undefined)
 {

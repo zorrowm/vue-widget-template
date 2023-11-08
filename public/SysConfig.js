@@ -5,7 +5,7 @@ const SysConfig = {
   //#region ********系统界面相关配置
   UI: {
     /*必须，系统配置标题，必须 */
-    SiteTitle: '基于widget开发模板',
+    SiteTitle: '基于ant-design v4.x& widget开发模板',
     CopyRight: 'Copyright ©XXXX  2022-2026',
     WebSite: 'http://www.XXXX.com',
     /**是否是能访问互联网，还是内网部署应用*/
@@ -13,7 +13,8 @@ const SysConfig = {
     LockTime: 3600, //1小时
     IsNoLogin: true, //无需登录页面,true时不登录
     GrayMode: false, //是否启用网站暗灰模式，悼念日，默认为false
-    ProductLog:false//是否在产品发布后启用日志记录
+    ProductLog:false,//是否在产品发布后启用日志记录
+    //Theme:'default',//主题样式
   },
   //#endregion
 
@@ -105,6 +106,15 @@ var htmlRoot = document.getElementById('htmlRoot');
 if (SysConfig.UI.GrayMode) htmlRoot.className = 'grayMode';
 else htmlRoot.className = '';
 
+//设置主题样式
+if (SysConfig.UI.Theme) {
+  const link = document.createElement("link");
+  link.type = "text/css";
+  link.rel = "stylesheet";
+  link.href = "./theme/" + SysConfig.UI.Theme + ".css";
+  const head = document.getElementsByTagName("head")[0];
+  head.appendChild(link);
+}
 //#endregion
 
 

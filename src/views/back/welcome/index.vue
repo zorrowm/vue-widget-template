@@ -23,19 +23,16 @@
 
 <script lang="ts">
 import BrowserType from "@/utils/browser-type";
+import { Client } from '@stomp/stompjs';
 import { Badge, Descriptions } from "ant-design-vue";
-import { defineComponent, ref } from "vue";
-import {Icon} from '@iconify/vue'
-import { Client, Message } from '@stomp/stompjs';
-import { onUnmounted } from "vue";
-import { onMounted } from "vue";
+import { defineComponent, onMounted, onUnmounted, ref } from "vue";
 
 export default defineComponent({
   name: "Welcome",
   components: {
     [Badge.name]: Badge,
     [Descriptions.name]: Descriptions,
-    [Descriptions.Item.name]: Descriptions.Item,Icon
+    [Descriptions.Item.name]: Descriptions.Item
   },
   setup() {
     // 获取浏览器信息

@@ -27,9 +27,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs, onMounted} from 'vue';
-
 import { useRouter } from 'vue-router';
-import { Icon } from '@iconify/vue'
 
 export default defineComponent({
   name: 'topFunBar',
@@ -43,7 +41,6 @@ export default defineComponent({
       default: true
     }
   },
-  components: { Icon },
   setup(props, { emit }) {
     const router = useRouter();
     const state = reactive({

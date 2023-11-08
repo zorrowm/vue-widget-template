@@ -48,7 +48,6 @@ import { OffEventHandler, OnEventHandler } from '@/events';
 import TableEvent from '@/events/modules/TableEvent';
 import ServiceInfoService from '@/service/imageAdminDefault/ServiceInfoService';
 import { doLoadModal } from '@/utils/WidgetsTool';
-import { Icon } from '@iconify/vue';
 import { defineComponent, onMounted, onUnmounted, reactive, toRefs } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Global } from 'xframelib';
@@ -62,7 +61,6 @@ export default defineComponent({
     TopFunBar,
     Pagination,
     ActionMenu,
-    Icon, 
     VSwitch
   },
   props: {},

@@ -31,12 +31,8 @@
 
 <script lang="ts">
 import { defineComponent,computed } from "vue";
-import {Icon} from '@iconify/vue'
 import { array,any} from "vue-types";
 export default defineComponent({
-  components: {
-    Icon
-  },
   props: {
     defaultMenus: array<any>().def([]),
     appendMenus: array<any>().def([]),

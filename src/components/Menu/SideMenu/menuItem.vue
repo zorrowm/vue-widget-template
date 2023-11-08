@@ -29,14 +29,10 @@
 </template>
 
 <script lang="ts">
-import { Icon } from "@iconify/vue";
 import { defineComponent } from 'vue';
 import { object } from "vue-types";
 export default defineComponent({
   name: 'menu-item',
-  components: {
-    Icon,
-  },
   props: {
     menuInfo: object()
   },

@@ -29,11 +29,10 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, createVNode } from 'vue';
-  import { Modal } from 'ant-design-vue';
-  import { Global, logout } from 'xframelib';
   import FullScreen from '@/components/FullScreen.vue';
-  import {Icon} from '@iconify/vue'
+import { Modal } from 'ant-design-vue';
+import { defineComponent, ref } from 'vue';
+import { Global, logout } from 'xframelib';
 
   export default defineComponent({
     name: 'HeaderTitleWidget',
