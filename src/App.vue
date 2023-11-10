@@ -11,7 +11,9 @@
   import { Global,onLockListener, unLockListener,ISysRightOptions,exportSystemRights } from 'xframelib';
   import { addAPIProvider } from '@iconify/vue';
   import {defineComponent,onMounted,onUnmounted } from 'vue';
-  import zh_CN from "ant-design-vue/lib/locale/zh_CN";
+  import zh_CN  from 'ant-design-vue/es/locale/zh_CN';
+  import dayjs from 'dayjs';
+  import 'dayjs/locale/zh-cn';
 
   import { bussinessRoutes } from '@/router';
   import functionList from '@/settings/functionSetting';
@@ -29,7 +31,7 @@
     },
     setup() {
       //TODO:检查必要参数是否配置
-
+      dayjs.locale('zh-cn');
       //注册自己的IconAPIProvider
       if(Global.Config.ServiceURL.IconServiceURL)
       addAPIProvider('', { resources: [Global.Config.ServiceURL.IconServiceURL]});
