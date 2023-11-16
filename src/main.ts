@@ -12,6 +12,9 @@ import { getSystemPKG, getSystemID } from "@/utils/sysTool";
 import { createPinia } from "pinia";
 import { message } from "ant-design-vue";
 import { Icon } from "@iconify/vue";
+//floating-vue 用于浮动tooltip
+// import {Dropdown,Tooltip,Menu} from 'floating-vue'
+import 'floating-vue/dist/style.css'
 
 if (window.global === undefined) {
   window.global = globalThis;
@@ -38,5 +41,8 @@ setupGlobDirectives(app);
 setupRouter(app);
 //注册全局组件
 app.component("Icon", Icon);
+// app.component('VDropdown', Dropdown)
+// app.component('VTooltip', Tooltip)
+// app.component('VMenu', Menu)
 
 app.mount("#app");
