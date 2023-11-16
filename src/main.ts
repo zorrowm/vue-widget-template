@@ -1,23 +1,25 @@
-import { createApp } from 'vue';
-import App from './App.vue';
+import { createApp } from "vue";
+import App from "./App.vue";
 //模板添加的
-import { setupRouter } from './router/index';
-import {setupGlobDirectives} from './directives/index';
-import { init, Global } from 'xframelib';
-import 'xframelib/dist/index.css';
-import { getSystemPKG, getSystemID } from '@/utils/sysTool';
-import { createPinia } from 'pinia';
-import { message } from 'ant-design-vue';
-import {Icon} from '@iconify/vue';
+import { setupRouter } from "./router/index";
+import { setupGlobDirectives } from "./directives/index";
+import { init, Global } from "xframelib";
+import "xframelib/dist/index.css";
+//tooltip库
+import tippy from "tippy.js";
+import "tippy.js/dist/tippy.css";
+import { getSystemPKG, getSystemID } from "@/utils/sysTool";
+import { createPinia } from "pinia";
+import { message } from "ant-design-vue";
+import { Icon } from "@iconify/vue";
 
-if(window.global===undefined)
-{
-  window.global=globalThis;
+if (window.global === undefined) {
+  window.global = globalThis;
 }
 message.config({
   top: `100px`,
   duration: 1,
-  maxCount: 3
+  maxCount: 3,
 });
 //绑定消息和初始化xframe
 //系统ID,唯一标识
@@ -35,6 +37,6 @@ app.use(pinia);
 setupGlobDirectives(app);
 setupRouter(app);
 //注册全局组件
-app.component('Icon',Icon);
+app.component("Icon", Icon);
 
-app.mount('#app');
+app.mount("#app");
