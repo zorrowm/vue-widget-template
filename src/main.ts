@@ -5,9 +5,6 @@ import { setupRouter } from "./router/index";
 import { setupGlobDirectives } from "./directives/index";
 import { init, Global } from "xframelib";
 import "xframelib/dist/index.css";
-//tooltip库
-import tippy from "tippy.js";
-import "tippy.js/dist/tippy.css";
 import { getSystemPKG, getSystemID } from "@/utils/sysTool";
 import { createPinia } from "pinia";
 import { message } from "ant-design-vue";
