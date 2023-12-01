@@ -1,5 +1,5 @@
 import { MenuItemEnum } from '@/enums/menuEnum';
-import type { IWidgetMenu } from '@/models/IRoleModels';
+import type { IWidgetMenu } from '@/models/IWidgetMenu';
 const menuCofig: Array<IWidgetMenu> = [
   // {
   //   name: '漫游',

@@ -1,8 +1,8 @@
-import type { IWidgetMenu } from '@/models/IRoleModels';
+import type { IWidgetMenu } from '@/models/IWidgetMenu';
 const menuCofig: Array<IWidgetMenu> = [];
 let tmpMenuArray: Array<IWidgetMenu> = [];
 
-const components = import.meta.glob('./*.ts',{eager:true});
+const components =import.meta.glob('./*.ts',{eager:true});
 Object.keys(components).forEach(path => {
   const comp=components[path] as any;
   tmpMenuArray.push(...comp.default);
