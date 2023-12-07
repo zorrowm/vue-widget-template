@@ -38,17 +38,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     //   replacement: 'vue-i18n/dist/vue-i18n.cjs.js'
     // },
   ];
-  if (isBuild) {
-    //发布模式下
-    const appendAlias = [
-      {
-        find: "vue-types",
-        replacement: "vue-types/shim",
-      },
-    ];
-    defaultAlias = defaultAlias.concat(appendAlias);
-  }
-
   return {
     base: VITE_PUBLIC_PATH,
     root,
@@ -89,13 +78,14 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
               const expansions = [
                 "axios",
                 "xframelib",
-                // 'ant-design-vue',
+                "ant-design-vue",
                 "mapbox-gl",
                 "ol",
                 "echarts",
                 "lodash-es",
                 // '@hprose',
                 "xgis-ol",
+                "xgis-plot",
                 "vue-router",
                 "@iconify/vue",
                 "@vue"//WM:必须要有，否则分包导出运行时报错
@@ -113,14 +103,14 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         },
       },
     },
-    css: {
-      preprocessorOptions: {
-        less: {
-          // modifyVars: generateModifyVars(),
-          javascriptEnabled: true,
-        },
-      },
-    },
+    // css: {
+    //   preprocessorOptions: {
+    //     // less: {
+    //     //   // modifyVars: generateModifyVars(),
+    //     //   javascriptEnabled: true,
+    //     // },
+    //   },
+    // },
 
     plugins: createVitePlugins(viteEnv, isBuild),
 

@@ -35,7 +35,7 @@
     }
   });
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
   .my-darg-bar {
     position: absolute;
     top: 0;

@@ -13,7 +13,7 @@
     >
       <div class="dragPanelTitle">
         <slot name="title">
-          <img v-if="props.icon" src="props.icon" width="24" height="24" />
+          <img v-if="props.icon" :src="props.icon" width="24" height="24" />
           <span v-if="props.title" class="paneltitle">{{ props.title }}</span>
         </slot>
         <div class="dragPanelBar">
@@ -33,7 +33,6 @@
 import { ref, onMounted, computed } from 'vue';
 import { H5Tool, isNumber, uuid } from 'xframelib';
 import { IPanelData, addWindowPanel, removeWindowPanel } from './XWindowModel';
-import { any } from 'vue-types';
 
 const id = uuid();
 /**

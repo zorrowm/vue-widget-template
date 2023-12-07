@@ -2,7 +2,6 @@ import { PluginOption } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import legacy from '@vitejs/plugin-legacy';
-import visualizer from 'rollup-plugin-visualizer';
 import { configCompressPlugin } from './compress';
 import { configVisualizerConfig } from './visualizer';
 import { configHmrPlugin } from './hmr';
@@ -21,8 +20,6 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   } = viteEnv;
 
   const vitePlugins: (PluginOption | PluginOption[])[] = [
-    //文件输出
-    pluginFS(),
     // have to
     vue(),
     // have to
@@ -39,7 +36,8 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
    vitePlugins.push(configViteUnplugin());
   //unplugin-auto-import
   // vitePlugins.push(pluginAutoImport);
-
+  //文件输出
+  !isBuild &&vitePlugins.push(pluginFS());  
   // TODO
   !isBuild && vitePlugins.push(configHmrPlugin());
 
@@ -55,21 +53,15 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   // The following plugins only work in the production environment
   if (isBuild) {
-    // rollup-plugin-visualizer
-    vitePlugins.push(configVisualizerConfig());
+
 
     // rollup-plugin-gzip
     vitePlugins.push(
       configCompressPlugin(VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE)
     );
     // 打包依赖展示
-    vitePlugins.push(
-      visualizer({
-        open: true,
-        gzipSize: true,
-        brotliSize: true
-      })
-    );
+    // rollup-plugin-visualizer
+    vitePlugins.push(configVisualizerConfig());
   }
 
   return vitePlugins;

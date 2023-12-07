@@ -165,7 +165,7 @@
     },
   });
 </script>
-<style lang="less">
+<style lang="scss">
   .ir-dv {
     position: relative;
     display: flex;
