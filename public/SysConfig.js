@@ -5,7 +5,7 @@ const SysConfig = {
   //#region ********系统界面相关配置
   UI: {
     /*必须，系统配置标题，必须 */
-    SiteTitle: '基于ant-design v4.x& widget开发模板',
+    SiteTitle: '基于ant-design v4.x widget开发模板',
     CopyRight: 'Copyright ©XXXX  2022-2026',
     WebSite: 'http://www.XXXX.com',
     /**是否是能访问互联网，还是内网部署应用*/

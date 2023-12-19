@@ -12,6 +12,7 @@
     "@mapbox/mapbox-gl-style-spec": "^14.0.0",
     "@microsoft/signalr": "^8.0.0",
     "@stomp/stompjs": "^7.0.0",
+    "@vueuse/core": "^10.7.0",
     "ant-design-vue": "^4.0.7",
     "dayjs": "^1.11.10",
     "echarts": "^5.4.3",
