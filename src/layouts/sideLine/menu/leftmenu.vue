@@ -3,13 +3,6 @@
     <a href="#/"><div class="logocontent"></div></a>
     <sidemenu></sidemenu>
     <div class="bottomMenu">
-      <!-- <a-tooltip placement="top">
-        <template #title>返回</template>
-        <span
-          class="icon iconfont icon-Undo-Filled logoClass"
-          @click="doBackParent"
-        ></span>
-      </a-tooltip> -->
       <div title="同步/保存" class="vitem">
         <Icon icon="ant-design:cloud-sync-outlined" color="#fff" />
         <span>保存</span>
@@ -27,7 +20,7 @@
         <Icon icon="ant-design:cloud-download-outlined" color="#fff" />
         <span>下载</span>
       </div>
-      <div title="退出" class="vitem" >
+      <div v-tooltip="'退出'" class="vitem" >
         <Icon icon="ant-design:logout-outlined" color="#fff" />
         <span>退出</span>
       </div>

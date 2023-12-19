@@ -53,14 +53,20 @@ export default defineComponent({
           pkgObject: getSystemPKG()
         };
         const data = exportSystemRights(options);
-        const dataJson = JSON.stringify(data);
-        //改为异步import 防止编译出错
-        import('vite-plugin-fs/browser').then(p => {
-          const fs = p.default;
-          if (fs)
-            fs.writeFile("./public/MenuRoutes.json", dataJson);
-        })
-        resolve(true);
+        if(data)
+        {
+          const dataJson = JSON.stringify(data);
+          //改为异步import 防止编译出错
+          import('vite-plugin-fs/browser').then(p => {
+            const fs = p.default;
+            if (fs)
+              fs.writeFile("./public/MenuRoutes.json", dataJson);
+          })
+          resolve(true);
+        }
+        else
+          reject(false);
+
       });
 
 

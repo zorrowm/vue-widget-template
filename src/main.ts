@@ -1,17 +1,17 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 //模板添加的
-import { setupRouter } from "./router/index";
-import { setupGlobDirectives } from "./directives/index";
-import { init, Global } from "xframelib";
-import "xframelib/dist/index.css";
-import { getSystemPKG, getSystemID } from "@/utils/sysTool";
-import { createPinia } from "pinia";
-import { message } from "ant-design-vue";
+import { getSystemID, getSystemPKG } from "@/utils/sysTool";
 import { Icon } from "@iconify/vue";
+import { message } from "ant-design-vue";
+import { createPinia } from "pinia";
+import { init } from "xframelib";
+import "xframelib/dist/index.css";
+import { setupGlobDirectives } from "./directives/index";
+import { setupRouter } from "./router/index";
 //floating-vue 用于浮动tooltip
 // import {Dropdown,Tooltip,Menu} from 'floating-vue'
-import 'floating-vue/dist/style.css'
+import 'floating-vue/dist/style.css';
 
 if (window.global === undefined) {
   window.global = globalThis;

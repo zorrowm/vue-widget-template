@@ -3,6 +3,11 @@
 全面基于Widget思想的开发模板
 积累记录
 
+2023.12.19
+升级所有js库到最新版；
+引入@VueUse库，调整useTime、useDragLine到src/composables文件夹下；
+其他小问题修改；
+
 2023.12.7
 升级所有js库到最新版；
 升级vite到5.x版本；

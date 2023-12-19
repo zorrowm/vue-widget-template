@@ -1,19 +1,16 @@
 <template>
-  <Tooltip :title="getTitle" placement="bottom" :mouseEnterDelay="0.5">
-    <span @click="toggle">
+    <span  v-tooltip="getTitle" @click="toggle">
       <Icon icon="ant-design:fullscreen-outlined" v-if="!isFullscreen" />
       <Icon icon="ant-design:fullscreen-exit-outlined"  v-else />
     </span>
-  </Tooltip>
+
 </template>
 <script lang="ts">
-  import { Tooltip } from 'ant-design-vue';
   import { object } from "vue-types";
   import { defineComponent,computed,ref } from 'vue';
   import { H5Tool } from 'xframelib';
   export default defineComponent({
-    name: 'FullScreen', //FullscreenOutlined
-    components: {Tooltip },
+    name: 'FullScreen',
     props: {
       target: object<any | Element>()
     },
