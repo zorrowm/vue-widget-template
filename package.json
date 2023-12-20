@@ -24,6 +24,7 @@
     "vue": "^3.3.12",
     "vue-router": "^4.2.5",
     "vue-types": "^5.1.1",
+    "workerpool": "^9.0.2",
     "xframelib": "^0.7.6",
     "xgis-ol": "^0.3.5",
     "xgis-plot": "^0.0.2"

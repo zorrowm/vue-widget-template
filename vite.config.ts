@@ -68,6 +68,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       // },
       // Turning off brotliSize display can slightly reduce packaging time
       // brotliSize: false,
+      commonjsOptions: {
+        // ignore built-in modules in Node.js  使用workerpool需要配置
+        ignore: ['os', 'child_process', 'worker_threads']
+      },
       chunkSizeWarningLimit: 2000,
       rollupOptions: {
         external: ["/img"],
