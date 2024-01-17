@@ -28,9 +28,9 @@ function resize() {
 }
 
 onMounted(() => {
-  initWidth = initWidth > window.innerWidth ? window.innerWidth : initWidth;
-  initHeight =
-    initHeight > window.innerHeight ? window.innerHeight : initHeight;
+  // initWidth = initWidth > window.innerWidth ? window.innerWidth : initWidth;
+  // initHeight =
+  //   initHeight > window.innerHeight ? window.innerHeight : initHeight;
   if (scaleContainerRef.value) {
     scaleContainerRef.value.style.width = initWidth + 'px';
     scaleContainerRef.value.style.height = initHeight + 'px';
