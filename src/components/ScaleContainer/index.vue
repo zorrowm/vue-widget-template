@@ -28,9 +28,14 @@ function resize() {
 }
 
 onMounted(() => {
-  // initWidth = initWidth > window.innerWidth ? window.innerWidth : initWidth;
-  // initHeight =
-  //   initHeight > window.innerHeight ? window.innerHeight : initHeight;
+
+  const scaleNum=window.innerWidth/window.innerHeight;
+  if(!(scaleNum>=2.5||scaleNum<=0.4))
+  {
+    initWidth = initWidth > window.innerWidth ? window.innerWidth : initWidth;
+    initHeight =
+      initHeight > window.innerHeight ? window.innerHeight : initHeight;
+  }
   if (scaleContainerRef.value) {
     scaleContainerRef.value.style.width = initWidth + 'px';
     scaleContainerRef.value.style.height = initHeight + 'px';
