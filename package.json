@@ -6,7 +6,7 @@
     "dev": "cross-env DEBUG=vite:deps vite",
     "build": "cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=8192 & vite build",
     "serve": "vite preview",
-    "clean": "rimraf components.d.ts && rimraf package-lock.json && rimraf node_modules/.vite/deps/*"
+    "clean": "rimraf components.d.ts && rimraf package-lock.json && rimraf node_modules/.vite"
   },
   "dependencies": {
     "@mapbox/mapbox-gl-style-spec": "^14.22.0",
@@ -48,6 +48,7 @@
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-fs": "^1.1.0",
     "vite-plugin-mkcert": "^2.0.0",
+    "vite-plugin-node-polyfills": "^0.26.0",
     "vite-plugin-xframelib": "^0.0.6",
     "vue-tsc": "^3.2.7"
   }

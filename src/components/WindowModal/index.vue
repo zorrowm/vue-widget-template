@@ -58,8 +58,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, SetupContext } from 'vue';
-  import { Transition } from 'ant-design-vue/lib/_util/transition';
+  import { defineComponent, SetupContext, Transition } from 'vue';
   import useModal from '@/components/WindowModal/useModal';
   import { bool, string,oneOfType } from 'vue-types';
 

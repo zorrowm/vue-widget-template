@@ -10,6 +10,7 @@ import { configViteUnplugin } from './unplugin';
 import pluginFS from "vite-plugin-fs";
 // import mkcert from'vite-plugin-mkcert'
 import xframelibPlugin from 'vite-plugin-xframelib';
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const {
     VITE_LEGACY,
@@ -28,7 +29,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     // mkcert({
     //   source: 'coding',
     // }),
-    xframelibPlugin()
+    xframelibPlugin(),
+    //使用vite-plugin-node-polyfills支持引用Node核心库模块
+    nodePolyfills({include: ['path', 'stream', 'util'],} ),
   ];
 
   //unplugin-vue-components
