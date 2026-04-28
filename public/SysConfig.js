@@ -69,18 +69,18 @@ const SysConfig = {
     /**
      * 天地图服务的授权Key
      */
-     TDTKey:['f9b51cc0282fa69451df24be416107b6','5d27dc75ca0c3bdf34f657ffe1e9881d','a90b856f2ade4b97f683cbc9c3c2702e','3566b0e50b26951da109cfea07e583c4','4ed383c68a325d012da2f0195b9609fe'],
+     TDTKey:['f9b51cc0282fa69451df24be416107b6'],
     /**
      * MapboxKey
-     * pk.eyJ1IjoiemdlbyIsImEiOiJja3E2MGE2NmIxbm45Mm5vNHpnOWZlZ3BlIn0.lDaMkti77XPv0_so0J9apQ
+     * 
      */
     MapboxKey:
-      'pk.eyJ1IjoiY2hyaXNuaW5nIiwiYSI6ImNrZzk3dmNveTA2cGUycXAyNXJ3bWNsOHMifQ._4oFj3iqj5yWWvbuONDYnw',
+      '',
     /**
      * Cesium Key
      */
     CesiumKey:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzZjdkOGRkYi1hYzIxLTQ4MDMtYjZiMC0zODg5YjI2ZTRlZjIiLCJpZCI6MjgyLCJzY29wZXMiOlsiYXNsIiwiYXNyIiwiYXN3IiwiZ2MiXSwiaWF0IjoxNTYyMDEyNTIyfQ.aVsGtowVeK_5C25G5-WCK7bZHyfXUl_zQ5Ud7TKsq0U'
+      ''
     /**
      * Google地图Key
      */
