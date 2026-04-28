@@ -11,7 +11,7 @@ const SysConfig = {
     /**是否是能访问互联网，还是内网部署应用*/
     IsInternet: true,
     LockTime: 10,//3600, //1小时  >=10分钟
-    IsNoLogin: false, //无需登录页面,true时不登录
+    IsNoLogin: true, //无需登录页面,true时不登录
     GrayMode: false, //是否启用网站暗灰模式，悼念日，默认为false
     ProductLog:false,//是否在产品发布后启用日志记录
     //Theme:'default',//主题样式
@@ -24,11 +24,11 @@ const SysConfig = {
      * 用户登录（统一用户登录）（不能带"/"）
      * http://192.168.1.12:83
      */
-     LoginAuthURL: "https://gis-auth.digsur.com",
+     LoginAuthURL: "https://auth.gis.digsur.com",
      /**
       * 图标在线服务地址（不能带"/"）
       */
-      IconServiceURL: "https://gis-icon.digsur.com/online",
+      IconServiceURL: "https://icon.gis.digsur.com/online",
      /**
       * 文件管理服务地址（统一文件管理：后台）
       */
@@ -49,9 +49,9 @@ const SysConfig = {
      /**
       * 默认HproseAPI的服务地址
       */
-     DefaultHproseAPI: "https://gis-image.digsur.com/ImageAdmin",
+     DefaultHproseAPI: "https://image.gis.digsur.com/ImageAdmin",
      //数据集管理http://192.168.1.33:1001/DataSource 
-     DatasetHproseAPI: "https://gis-image.digsur.com/DataSource",
+     DatasetHproseAPI: "https://image.gis.digsur.com/DataSource",
      // DatasetHproseAPI: 'http://192.168.1.47:1001/DataSource',
  
      //渲染样式色带图片
@@ -97,7 +97,7 @@ const SysConfig = {
 
 
 //#region *********其他可扩展执行的JS代码
-
+globalThis.SysConfig=SysConfig;
 //默认设置网站Title
 document.title = SysConfig.UI.SiteTitle;
 //设置样式

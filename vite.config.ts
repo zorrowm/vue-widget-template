@@ -7,6 +7,7 @@ import { OUTPUT_DIR } from "./vite-build/constant";
 import pkg from "./package.json";
 import dayjs from "dayjs";
 
+
 const { name, version } = pkg;
 const __APP_INFO__ = {
   pkg: { name, version },

@@ -9,8 +9,7 @@ import { configViteUnplugin } from './unplugin';
 // import cesium from 'vite-plugin-cesium';
 import pluginFS from "vite-plugin-fs";
 // import mkcert from'vite-plugin-mkcert'
-
-
+import xframelibPlugin from 'vite-plugin-xframelib';
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const {
     VITE_LEGACY,
@@ -29,6 +28,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     // mkcert({
     //   source: 'coding',
     // }),
+    xframelibPlugin()
   ];
 
   //unplugin-vue-components
