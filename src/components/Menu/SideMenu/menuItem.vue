@@ -31,6 +31,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { object } from "vue-types";
+import type { RouteRecordRaw } from 'vue-router';
 export default defineComponent({
   name: 'menu-item',
   props: {
