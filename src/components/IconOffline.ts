@@ -1,9 +1,7 @@
 import {
-	addCollection as addOnlineCollection,
-	disableCache,
-} from '@iconify/vue/dist/iconify';
+	addCollection as addOnlineCollection
+} from '@iconify/vue/offline';
 function registerIconCollection() {
-	disableCache('all');
 	addOnlineCollection({
 		prefix: 'ant-design',
 		icons: {

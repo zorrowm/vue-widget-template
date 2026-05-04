@@ -1,4 +1,5 @@
 
+import type { RouteRecordRaw } from 'vue-router';
 const routesCofig: Array<RouteRecordRaw> = [];
 const components = import.meta.glob('./*.ts',{eager:true});
 Object.keys(components).forEach(path => {

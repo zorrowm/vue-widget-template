@@ -1,6 +1,7 @@
 import { userStore } from '@/store';
 import { Global,getFunctions, getRoutes, getWidgetConfig, IWidgetConfig, getWidgetMenus } from 'xframelib';
 import { bussinessRoutes } from '@/router';
+import type { RouteRecordRaw } from 'vue-router';
 
 
 import functionSettings from '@/settings/functionSetting';

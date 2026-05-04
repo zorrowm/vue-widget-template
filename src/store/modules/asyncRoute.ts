@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import type { RouteRecordRaw } from 'vue-router';
 
 interface IAsyncrouteState {
   menus: RouteRecordRaw[];
