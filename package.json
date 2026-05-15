@@ -9,10 +9,10 @@
     "clean": "rimraf components.d.ts && rimraf package-lock.json && rimraf node_modules/.vite"
   },
   "dependencies": {
-    "@mapbox/mapbox-gl-style-spec": "^14.22.0",
+    "@mapbox/mapbox-gl-style-spec": "^14.23.0",
     "@microsoft/signalr": "^10.0.0",
     "@stomp/stompjs": "^7.3.0",
-    "@vueuse/core": "^14.2.1",
+    "@vueuse/core": "^14.3.0",
     "ant-design-vue": "^4.2.6",
     "dayjs": "^1.11.20",
     "echarts": "^6.0.0",
@@ -21,21 +21,21 @@
     "nprogress": "1.0.0-1",
     "ol": "^10.9.0",
     "pinia": "^3.0.4",
-    "vue": "^3.5.33",
-    "vue-router": "^5.0.6",
+    "vue": "^3.5.34",
+    "vue-router": "^5.0.7",
     "vue-types": "^6.0.0",
     "workerpool": "^10.0.2",
-    "xframelib": "^1.1.1",
-    "xgis-ol": "^0.4.4",
+    "xframelib": "^1.1.4",
+    "xgis-ol": "^0.4.5",
     "xgis-plot": "^0.0.4"
   },
   "devDependencies": {
-    "@iconify/vue": "^5.0.0",
-    "@types/node": "^25.6.0",
-    "@vitejs/plugin-legacy": "^8.0.1",
+    "@iconify/vue": "^5.0.1",
+    "@types/node": "^25.8.0",
+    "@vitejs/plugin-legacy": "^8.0.2",
     "@vitejs/plugin-vue": "^6.0.6",
     "@vitejs/plugin-vue-jsx": "^5.1.5",
-    "@vue/compiler-sfc": "^3.5.33",
+    "@vue/compiler-sfc": "^3.5.34",
     "consola": "^3.4.2",
     "cross-env": "^10.1.0",
     "dotenv": "^17.4.2",
@@ -44,12 +44,12 @@
     "sass": "^1.99.0",
     "typescript": "^6.0.3",
     "unplugin-vue-components": "^32.0.0",
-    "vite": "^8.0.10",
+    "vite": "^8.0.13",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-fs": "^1.1.0",
     "vite-plugin-mkcert": "^2.0.0",
     "vite-plugin-node-polyfills": "^0.26.0",
     "vite-plugin-xframelib": "^0.0.6",
-    "vue-tsc": "^3.2.7"
+    "vue-tsc": "^3.2.9"
   }
 }
